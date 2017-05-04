@@ -16,7 +16,7 @@ using namespace std;
 	//Call getNextFree()
 	//Write str into diskBlockType buffer
 	//Call  int write(int bnum, DiskBlockType *buffer);
-	//Increment size
+	//Increment size, call getNumBlocks, getBlockSize, do some math with str.length
 	bool FileSystem::writeNewBlocks(string str){
 
 		DiskBlockType *buffer;
