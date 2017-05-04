@@ -82,3 +82,7 @@ using namespace std;
 
 
 	}
+
+	string FileSystem::getData(int startBlock, int endBlock){
+	
+	}
