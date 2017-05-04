@@ -1,7 +1,7 @@
 
 
-#include <iostream>
-using namespace std;
+#ifndef _FILESYSTEM
+#define _FILESYSTEM
 
 class FileSystem{
 
@@ -20,29 +20,15 @@ class FileSystem{
 		//Write str into diskBlockType buffer
 		//Call  int write(int bnum, DiskBlockType *buffer);
 		//Increment size
-		bool writeNewBlocks(string str){
-
-			DiskBlockType *buffer
-			//Fill buffer with str			
-			for (int i=0; i<str.length(); i++){ 
-				buffer->data[i]=str[i];
-			}
-
-			if( DiskProcessType:write(getNextFree() , buffer) == 0)
-				return true; //Successful write
-			else
-				return false;//Error
-		
-		}
+		bool writeNewBlocks(string str);
 
 		//Write str into diskBlockType buffer
 		//int write(int bnum, DiskBlockType *buffer);
 		//Increment size if needed
 		bool writeExistingBlocks(int blockNum, string str);
 
-
 		//Call int read(int bnum, DiskBlockType *buffer);
-		bool readBlocks(int startBlock, int endBlock);
+		string readBlocks(int startBlock, int endBlock);
 		
 		//Decrement size
 		bool freeBlocks(int startBlock, int endBlock);
@@ -51,7 +37,7 @@ class FileSystem{
 
 }
 
-
+/*Use this for getNextFree function?
 
 int FileSystem::getFreeBlock(){
 	int blockIndex = 0;
@@ -66,3 +52,5 @@ int FileSystem::getFreeBlock(){
 	cout << "freespace blocks left = " << freespace->getBlockSize() << "/" << DISK_SIZE << endl;
 	return blockIndex;
 }
+
+*/
