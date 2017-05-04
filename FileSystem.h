@@ -41,7 +41,7 @@ class FileSystem{
 		//Decrement size
 		bool freeBlocks(int startBlock, int endBlock);
 
-
+		string getData(int startBlock, int endBlock);
 
 }
 
