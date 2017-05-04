@@ -6,8 +6,8 @@
 
 using namespace std;
 	
-	FileSystem::FileSystem(DiskProcessType p){
-		proc = p;
+	FileSystem::FileSystem(){
+		proc  = new DiskProcessType();
 		
 		//Initialize freeSpace vector to all true
 		for(int i=0; i<proc.getNumBlocks(); i++){
