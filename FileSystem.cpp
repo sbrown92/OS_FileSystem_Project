@@ -7,9 +7,12 @@
 using namespace std;
 	
 
-	int getNextFree(){
-
-		
+	int FileSystem::getNextFree(){
+		int i=0;
+		while(isFree[i] != true){
+			i++;
+		}
+		return i;
 	}
 
 
