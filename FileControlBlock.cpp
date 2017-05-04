@@ -9,8 +9,8 @@ using namespace std;
 	//UI would call this on create
 	FileControlBlock::FileControlBlock(string name){
 		fileName = name;
-		startBlock = NULL;
-		endBlock = NULL;
+		startBlock = -1;
+		endBlock = -1;
 		size = 0;
 	}
 
