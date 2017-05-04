@@ -3,7 +3,7 @@
 
 #ifndef _FILESYSTEM
 #define _FILESYSTEM
-
+#include <vector>;
 #include "DiskProcessType.h"
 
 class FileSystem{
@@ -11,7 +11,8 @@ class FileSystem{
 	private:
 		int remainingBlocks;
 		int blocksInUse;
-
+		vector<bool> freeSpace = new vector();
+	
 		//Search for next free block, linearly through vector? or keep track of nextFree somewhere else
 		//Can check remainingBlocks first to save time, exit if none left
 		int getNextFree();
