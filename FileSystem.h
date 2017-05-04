@@ -1,7 +1,10 @@
 
 
+
 #ifndef _FILESYSTEM
 #define _FILESYSTEM
+
+#include "DiskProcessType.h"
 
 class FileSystem{
 
@@ -12,10 +15,14 @@ class FileSystem{
 		//Search for next free block, linearly through vector? or keep track of nextFree somewhere else
 		//Can check remainingBlocks first to save time, exit if none left
 		int getNextFree();
+		DiskProcessType proc;
 
 	public:
 		
+		FileSystem(DiskProcessType p);
 
+		bool hasFreeSpace(DiskProcessType);
+	
 		//Call getNextFree()
 		//Write str into diskBlockType buffer
 		//Call  int write(int bnum, DiskBlockType *buffer);
