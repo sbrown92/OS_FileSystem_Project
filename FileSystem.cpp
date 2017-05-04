@@ -35,7 +35,9 @@ using namespace std;
 		for (int i=0; i<str.length(); i++){ 
 			buffer->data[i]=str[i];
 		}
-			if( DiskProcessType::write(getNextFree() , buffer) == 0)
+		if( DiskProcessType::write(getNextFree() , buffer) == 0 )
+			//Check if string is bigger than block size? split it up
+			//Update freeSpace vector
 			return true; //Successful write
 		else
 			return false;//Error
@@ -53,6 +55,8 @@ using namespace std;
 			buffer->data[i]=str[i];
 		}
 		if( DiskProcessType::write(blockNum, buffer) == 0)
+			//Check if string is bigger than block size? split it up
+			//Update freeSpace vector
 			return true; //Successful write
 		else
 			return false;//Error
@@ -73,6 +77,7 @@ using namespace std;
 	}
 	
 	//Decrement size
+	//Change corresponding freeSpace indeces to true
 	bool FileSystem::freeBlocks(int startBlock, int endBlock){
 
 
