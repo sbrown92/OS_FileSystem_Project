@@ -6,10 +6,18 @@
 
 using namespace std;
 	
+	FileSystem::FileSystem(DiskProcessType p){
+		proc = p;
+		
+		//Initialize freeSpace vector to all true
+		for(int i=0; i<proc.getNumBlocks(); i++){
+			freeSpace[i] = true;
+		}
+	}
 
 	int FileSystem::getNextFree(){
 		int i=0;
-		while(isFree[i] != true){
+		while(freeSpace[i] != true){
 			i++;
 		}
 		return i;
