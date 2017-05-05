@@ -60,6 +60,3 @@ int main() {
 
     return 0;
 }
-UI.cpp
-Open with Code Your Cloud
-Displaying UI.h.
