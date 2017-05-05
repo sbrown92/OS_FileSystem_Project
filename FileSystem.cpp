@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include "DiskProcess.h"
+#include "diskprocess.h"
 #include "FileSystem.h"
 
 
