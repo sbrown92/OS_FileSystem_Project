@@ -41,19 +41,3 @@ using namespace std;
 		//Calls fileSystem function, pass in startBlock as param
 	}
 
-
-
-
-
-
-
-
-class Directory{
-
-//Array of FileControlBlocks
-
-
-
-
-
-}
