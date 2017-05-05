@@ -43,7 +43,7 @@ using namespace std;
 	}
         
         
-        //TODO: Add in checks to see if file does not save correctly. 
+        // TODO: Add in checks to see if file does not save correctly. 
         bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
             DiskBlockType *buffer = new DiskBlockType(this->proc->getBlockSize());
             int temp = (data.length() / (proc->getBlockSize() - 3));
@@ -90,6 +90,11 @@ using namespace std;
 		return i;
 	}
 
+	// Description: Called by Directory to read data in a file
+	// Parameters: startBlock: An int representing pointer to the first block. 
+	//	       endBlock: An int representing a pointer to the last block. 
+	// Calls DiskProcessType::read(int bnum, DiskBlockType *buffer);
+	// Returns a string of the data in file
 	string FileSystem::readBlocks(int startBlock, int endBlock){
 		string result;
 		int curBlock = startBlock;
@@ -107,8 +112,10 @@ using namespace std;
 		return result;
 	}
 
-	//Decrement size
-	//Change corresponding freeSpace indeces to true
+	// Description: Called by Directory when a file is to be deleted
+	// Parameters: startBlock: An int representing pointer to the first block.
+	//	       endBlock: An int representing a pointer to the last block.
+	//Returns true if successful, false otherwise
 	bool FileSystem::freeBlocks(int startBlock, int endBlock){
 		int curBlock = startBlock;
 		int tmp = 0;
@@ -116,10 +123,12 @@ using namespace std;
 			tmp = curBlock; //Hold block position
 			//Move to next block in file's position
 			curBlock = ((((int)buffer->data[0])*100) + (((int)buffer->data[1])*10) + (int)buffer->data[2]) - 1;
-			//Set data in block to NULL
+			//Set data in original block to NULL
 			proc[tmp]->data = NULL;
 			//tmp block is now free again
-            freeBlocks.push_back(tmp);
+            		freeBlocks.push_back(tmp);
+			numBlocksUsed--;
 		}
-		
+		if(curBlock == endBlock){return true};
+		else {return false};
 	}
