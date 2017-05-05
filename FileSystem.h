@@ -16,24 +16,22 @@ class FileSystem{
 		//Search for next free block, linearly through vector? or keep track of nextFree somewhere else
 		//Can check remainingBlocks first to save time, exit if none left
 		int getNextFree();
+
 		DiskProcessType proc;
 
 	public:
 		
-		FileSystem(DiskProcessType p);
+		FileSystem();
 
-		bool hasFreeSpace(DiskProcessType);
+		bool hasFreeSpace();									// <---  Sam 
 	
-		//Call getNextFree()
-		//Write str into diskBlockType buffer
-		//Call  int write(int bnum, DiskBlockType *buffer);
-		//Increment size
-		bool writeNewBlocks(string str);
-
-		//Write str into diskBlockType buffer
-		//int write(int bnum, DiskBlockType *buffer);
-		//Increment size if needed
-		bool writeExistingBlocks(int blockNum, string str);
+		// Description: Called By the UI when EDITing a file.
+		// Parameters endblock: The variable which will store the end block 
+		//						of the file. Passed by reference because it
+		//						is stored along with the return value. 
+		//			  data: The data to be appended to the end of the file. 
+		// Return: The first block of the file. 
+		bool saveFileToDisk(int& endBlock, string data); 		// <---  Sam
 
 		//Call int read(int bnum, DiskBlockType *buffer);
 		string readBlocks(int startBlock, int endBlock);
