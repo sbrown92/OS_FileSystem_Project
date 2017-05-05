@@ -142,15 +142,7 @@ In file included from /usr/include/c++/6.3.1/ios:38:0,
 /usr/include/c++/6.3.1/iosfwd:119:11: note: declaration of ‘std::ofstream {aka class std::basic_ofstream<char>}’
      class basic_ofstream;
            ^~~~~~~~~~~~~~
-In file included from Directory.h:6:0,
-                 from UI.h:8,
-                 from UI.cpp:10:
-FileSystem.h:65:47: error: ‘bool FileSystem::freeBlocks(int, int)’ conflicts with a previous declaration
-   bool freeBlocks(int startBlock, int endBlock);
-                                               ^
-FileSystem.h:14:19: note: previous declaration ‘std::vector<int> FileSystem::freeBlocks’
-   std::vector<int>freeBlocks;
-                   ^~~~~~~~~~
+
 In file included from UI.h:8:0,
                  from UI.cpp:10:
 Directory.h:24:38: error: expected type-specifier before ‘vector’
