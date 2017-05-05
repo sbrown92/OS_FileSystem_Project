@@ -28,19 +28,39 @@ using namespace std;
 	//Call  int write(int bnum, DiskBlockType *buffer);
 	//Increment size, call getNumBlocks, getBlockSize, do some math with str.length
 	bool FileSystem::writeNewBlocks(string str){
-
-		DiskBlockType *buffer;
+		int blocksNeeded = (str.length()/proc.getNumBlocks()) +1;
+		int blockSize = proc.getBlockSize();
+		int j=0;
+		int nextFreeBlock = 0;
 		//Fill buffer with str			
 		for (int i=0; i<str.length(); i++){ 
 			buffer->data[i]=str[i];
 		}
-		if( DiskProcessType::write(getNextFree() , buffer) == 0 )
-			//Check if string is bigger than block size? split it up
-			//Update freeSpace vector
-			return true; //Successful write
-		else
-			return false;//Error
-	
+		while(blocksNeeded>0){
+			DiskBlockType *buffer;
+			int i=3;
+			while(i<blockSize && j<str.length()){
+				buffer->data[i]=str[j];
+				i++;
+				j++;
+			}
+			if( DiskProcessType::write(getNextFree() , buffer) == 0 )
+				//Inc size
+				//Update freeSpace vector
+				//Store next block in first 3 chars of data
+				FileControlBlock::increaseSize(1);
+				nextFreeBlock = getNextFree();
+				freeSpace[nextFreeBlock] = false;
+				buffer->data[2] = (char)nextFreeBlock;
+				nextFreeBlock = nextFreeBlock%10;
+				buffer->data[1] = (char)nextFreeBlock;
+				nextFreeBlock = nextFreeBlock%10;	
+				buffer->data[0] = (char)nextFreeBlock;
+				blocksNeeded--;
+			else
+				return false;//Error
+		}
+		return true; //Successful write
 	}
 
 	//Write str into diskBlockType buffer
