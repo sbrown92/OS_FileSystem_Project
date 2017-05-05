@@ -174,6 +174,3 @@ void type(string filename) {
 //     success = deleteList();
 //     return success;
 // }
-UI.h
-Open with Code Your Cloud
-Displaying UI.h.
