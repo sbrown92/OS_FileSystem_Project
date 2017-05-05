@@ -23,7 +23,7 @@ class FileControlBlock{
 	public:
 		//UI would call this on create
 		FileControlBlock(string name);
-
+		string getFileName();
 		int getStart();
 		int getEnd();
 		int getSize();
