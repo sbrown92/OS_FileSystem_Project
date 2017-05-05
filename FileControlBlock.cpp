@@ -28,6 +28,10 @@ using namespace std;
 	int FileControlBlock::getEnd(){
 		return endBlock;
 	}
+	
+	int FileControlBlock::getSize(){
+		return size;
+	}
 
 	void FileControlBlock::setStart(int s){
 		startBlock = s;
