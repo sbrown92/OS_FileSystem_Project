@@ -1,6 +1,7 @@
 
 
 #include <iostream>
+#include <string>
 #include "FileControlBlock.h"
 
 using namespace std;
