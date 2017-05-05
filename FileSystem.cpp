@@ -119,11 +119,7 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
         
 
 	int FileSystem::getNextFree(){
-		int i=0;
-		while(freeSpace[i] != true){
-			i++;
-		}
-		return i;
+		return freeBlocks.back();
 	}
 
 	// Description: Called by Directory to read data in a file
