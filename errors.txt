@@ -13,12 +13,7 @@ In file included from /usr/include/c++/6.3.1/ios:38:0,
            ^~~~~~~~~~~~~~
 In file included from Directory.h:6:0,
                  from Directory.cpp:2:
-FileSystem.h:65:47: error: ‘bool FileSystem::freeBlocks(int, int)’ conflicts with a previous declaration
-   bool freeBlocks(int startBlock, int endBlock);
-                                               ^
-FileSystem.h:14:19: note: previous declaration ‘std::vector<int> FileSystem::freeBlocks’
-   std::vector<int>freeBlocks;
-                   ^~~~~~~~~~
+
 In file included from Directory.cpp:2:0:
 Directory.h:24:38: error: expected type-specifier before ‘vector’
    vector<FileControlBlock> dir = new vector();
