@@ -14,6 +14,9 @@ using namespace std;
 		endBlock = -1;
 		size = 0;
 	}
+	string FileControlBlock::getFileName(){
+		return fileName;
+	}
 
 	int FileControlBlock::getStart(){
 		return startBlock;
