@@ -20,53 +20,51 @@ FileSystem.h:14:19: note: previous declaration ‘std::vector<int> FileSystem::f
    std::vector<int>freeBlocks;
                    ^~~~~~~~~~
 In file included from Directory.cpp:2:0:
-Directory.h:25:3: error: ‘counter’ does not name a type
-   counter = 0;
-   ^~~~~~~
 Directory.h:24:38: error: expected type-specifier before ‘vector’
    vector<FileControlBlock> dir = new vector();
                                       ^~~~~~
 Directory.cpp: In function ‘bool createFile(std::__cxx11::string)’:
-Directory.cpp:6:22: error: ‘hasFreeSpace’ was not declared in this scope
+Directory.cpp:7:22: error: ‘hasFreeSpace’ was not declared in this scope
      if(!hasFreeSpace()){
                       ^
-Directory.cpp:9:5: error: ‘dir’ was not declared in this scope
+Directory.cpp:10:5: error: ‘dir’ was not declared in this scope
      dir[counter] = new FileControlBlock(name);
      ^~~
-Directory.cpp:9:9: error: ‘counter’ was not declared in this scope
+Directory.cpp:10:9: error: ‘counter’ was not declared in this scope
      dir[counter] = new FileControlBlock(name);
          ^~~~~~~
 Directory.cpp: In function ‘bool nameExists(std::__cxx11::string)’:
-Directory.cpp:16:50: error: ‘dir’ was not declared in this scope
+Directory.cpp:17:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:17:14: error: ‘i’ was not declared in this scope
+Directory.cpp:18:14: error: ‘i’ was not declared in this scope
        if(dir[i] == name){
               ^
 Directory.cpp: In function ‘std::__cxx11::string getFileName(int)’:
-Directory.cpp:25:12: error: ‘dir’ was not declared in this scope
+Directory.cpp:26:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getFile());
             ^~~
 Directory.cpp: In function ‘int getFileSize(int)’:
-Directory.cpp:29:12: error: ‘dir’ was not declared in this scope
+Directory.cpp:30:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getSize());
             ^~~
 Directory.cpp: In function ‘bool deleteFile(std::__cxx11::string)’:
-Directory.cpp:32:33: error: ‘getFCB’ was not declared in this scope
+Directory.cpp:33:33: error: ‘getFCB’ was not declared in this scope
      return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
                                  ^
-Directory.cpp:32:83: error: ‘freeSpace’ was not declared in this scope
+Directory.cpp:33:83: error: ‘freeSpace’ was not declared in this scope
      return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
                                                                                    ^
 Directory.cpp: In function ‘FileControlBlock getFCB(std::__cxx11::string)’:
-Directory.cpp:35:50: error: ‘dir’ was not declared in this scope
+Directory.cpp:36:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:36:14: error: ‘i’ was not declared in this scope
+Directory.cpp:37:14: error: ‘i’ was not declared in this scope
        if(dir[i] == name)
               ^
-
-
+FileControlBlock.cpp:45:35: error: no ‘std::__cxx11::string FileControlBlock::getData()’ member function declared in class ‘FileControlBlock’
+  string FileControlBlock::getData(){
+                                   ^
 In file included from FileSystem.cpp:6:0:
 diskprocess.h:60:3: error: ‘ofstream’ does not name a type
    ofstream logfile;   // the file to log debug info to if logging
@@ -88,10 +86,6 @@ diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
 diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
        logfile << "DISK: Terminating.\n";
        ^~~~~~~
-       
-       
-       
-       
 In file included from FileSystem.cpp:7:0:
 FileSystem.h: At global scope:
 FileSystem.h:65:47: error: ‘bool FileSystem::freeBlocks(int, int)’ conflicts with a previous declaration
@@ -164,9 +158,6 @@ FileSystem.h:14:19: note: previous declaration ‘std::vector<int> FileSystem::f
                    ^~~~~~~~~~
 In file included from UI.h:8:0,
                  from UI.cpp:10:
-Directory.h:25:3: error: ‘counter’ does not name a type
-   counter = 0;
-   ^~~~~~~
 Directory.h:24:38: error: expected type-specifier before ‘vector’
    vector<FileControlBlock> dir = new vector();
                                       ^~~~~~
