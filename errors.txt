@@ -65,10 +65,8 @@ Directory.cpp:35:50: error: ‘dir’ was not declared in this scope
 Directory.cpp:36:14: error: ‘i’ was not declared in this scope
        if(dir[i] == name)
               ^
-FileControlBlock.cpp: In member function ‘std::__cxx11::string FileControlBlock::writeData(std::__cxx11::string)’:
-FileControlBlock.cpp:20:3: error: ‘FileSystem’ has not been declared
-   FileSystem::writeExistingBlocks(startBlock, str);
-   ^~~~~~~~~~
+
+
 In file included from FileSystem.cpp:6:0:
 diskprocess.h:60:3: error: ‘ofstream’ does not name a type
    ofstream logfile;   // the file to log debug info to if logging
@@ -90,6 +88,10 @@ diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
 diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
        logfile << "DISK: Terminating.\n";
        ^~~~~~~
+       
+       
+       
+       
 In file included from FileSystem.cpp:7:0:
 FileSystem.h: At global scope:
 FileSystem.h:65:47: error: ‘bool FileSystem::freeBlocks(int, int)’ conflicts with a previous declaration
