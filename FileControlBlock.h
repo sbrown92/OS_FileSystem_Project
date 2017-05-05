@@ -3,6 +3,8 @@
 #ifndef _FILECONTROLBLOCK
 #define _FILECONTROLBLOCK
 
+#include <string>
+
 class FileControlBlock{
 
 	private:
@@ -30,6 +32,6 @@ class FileControlBlock{
 		//Calls fileSystem function, pass in startBlock as param
 		string getData();
 
-}
+};
 
 #endif
