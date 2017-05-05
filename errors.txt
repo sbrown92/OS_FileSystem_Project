@@ -1,0 +1,119 @@
+In file included from Directory.cpp:2:0:
+Directory.h:20:3: error: ‘FileControlBlock’ does not name a type
+   FileControlBlock getFCB(string);
+   ^~~~~~~~~~~~~~~~
+Directory.h:23:3: error: ‘vector’ does not name a type
+   vector<FileControlBlock> dir = new vector();
+   ^~~~~~
+Directory.h:24:3: error: ‘counter’ does not name a type
+   counter = 0;
+   ^~~~~~~
+Directory.cpp: In function ‘bool createFile(std::__cxx11::string)’:
+Directory.cpp:6:22: error: ‘hasFreeSpace’ was not declared in this scope
+     if(!hasFreeSpace()){
+                      ^
+Directory.cpp:9:5: error: ‘dir’ was not declared in this scope
+     dir[counter] = new FileControlBlock(name);
+     ^~~
+Directory.cpp:9:9: error: ‘counter’ was not declared in this scope
+     dir[counter] = new FileControlBlock(name);
+         ^~~~~~~
+Directory.cpp:9:24: error: expected type-specifier before ‘FileControlBlock’
+     dir[counter] = new FileControlBlock(name);
+                        ^~~~~~~~~~~~~~~~
+Directory.cpp: In function ‘bool nameExists(std::__cxx11::string)’:
+Directory.cpp:16:10: error: ‘vector’ was not declared in this scope
+     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+          ^~~~~~
+Directory.cpp:16:17: error: ‘FileControlBlock’ was not declared in this scope
+     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+                 ^~~~~~~~~~~~~~~~
+Directory.cpp:16:45: error: missing template arguments before ‘it’
+     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+                                             ^~
+Directory.cpp:16:64: error: ‘it’ was not declared in this scope
+     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+                                                                ^~
+Directory.cpp:16:70: error: ‘dir’ was not declared in this scope
+     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+                                                                      ^~~
+Directory.cpp:17:14: error: ‘i’ was not declared in this scope
+       if(dir[i] == name){
+              ^
+Directory.cpp: In function ‘std::__cxx11::string getFileName(int)’:
+Directory.cpp:25:12: error: ‘dir’ was not declared in this scope
+     return(dir[file].getFile());
+            ^~~
+Directory.cpp: In function ‘int getFileSize(int)’:
+Directory.cpp:29:12: error: ‘dir’ was not declared in this scope
+     return(dir[file].getSize());
+            ^~~
+Directory.cpp: In function ‘bool deleteFile(std::__cxx11::string)’:
+Directory.cpp:32:33: error: ‘getFCB’ was not declared in this scope
+     return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+                                 ^
+Directory.cpp:32:83: error: ‘freeSpace’ was not declared in this scope
+     return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+                                                                                   ^
+Directory.cpp: At global scope:
+Directory.cpp:34:3: error: ‘FileControlBlock’ does not name a type
+   FileControlBlock getFCB(string name){
+   ^~~~~~~~~~~~~~~~
+In file included from FileControlBlock.cpp:4:0:
+FileControlBlock.h:9:3: error: ‘string’ does not name a type
+   string fileName;
+   ^~~~~~
+FileControlBlock.h:16:27: error: expected ‘)’ before ‘name’
+   FileControlBlock(string name);
+                           ^~~~
+FileControlBlock.h:21:3: error: ‘string’ does not name a type
+   string writeData(string str);
+   ^~~~~~
+FileControlBlock.h:31:3: error: ‘string’ does not name a type
+   string getData();
+   ^~~~~~
+FileControlBlock.h:33:1: error: expected ‘;’ after class definition
+ }
+ ^
+FileControlBlock.cpp:10:2: error: prototype for ‘FileControlBlock::FileControlBlock(std::__cxx11::string)’ does not match any in class ‘FileControlBlock’
+  FileControlBlock::FileControlBlock(string name){
+  ^~~~~~~~~~~~~~~~
+In file included from FileControlBlock.cpp:4:0:
+FileControlBlock.h:6:7: error: candidates are: constexpr FileControlBlock::FileControlBlock(FileControlBlock&&)
+ class FileControlBlock{
+       ^~~~~~~~~~~~~~~~
+FileControlBlock.h:6:7: error:                 constexpr FileControlBlock::FileControlBlock(const FileControlBlock&)
+FileControlBlock.h:6:7: error:                 FileControlBlock::FileControlBlock()
+FileControlBlock.cpp:17:47: error: no ‘std::__cxx11::string FileControlBlock::writeData(std::__cxx11::string)’ member function declared in class ‘FileControlBlock’
+  string FileControlBlock::writeData(string str){
+                                               ^
+FileControlBlock.cpp:51:35: error: no ‘std::__cxx11::string FileControlBlock::getData()’ member function declared in class ‘FileControlBlock’
+  string FileControlBlock::getData(){
+                                   ^
+FileSystem.cpp:6:25: fatal error: DiskProcess.h: No such file or directory
+
+                         ^
+compilation terminated.
+In file included from UI.h:8:0,
+                 from UI.cpp:10:
+Directory.h:20:3: error: ‘FileControlBlock’ does not name a type
+   FileControlBlock getFCB(string);
+   ^~~~~~~~~~~~~~~~
+Directory.h:23:10: error: ‘FileControlBlock’ was not declared in this scope
+   vector<FileControlBlock> dir = new vector();
+          ^~~~~~~~~~~~~~~~
+Directory.h:23:26: error: template argument 1 is invalid
+   vector<FileControlBlock> dir = new vector();
+                          ^
+Directory.h:23:26: error: template argument 2 is invalid
+Directory.h:24:3: error: ‘counter’ does not name a type
+   counter = 0;
+   ^~~~~~~
+Directory.h:23:38: error: expected type-specifier before ‘vector’
+   vector<FileControlBlock> dir = new vector();
+                                      ^~~~~~
+In file included from UI.cpp:10:0:
+UI.h: In function ‘void edit(std::__cxx11::string)’:
+UI.h:149:42: error: ‘std::__cxx11::string {aka class std::__cxx11::basic_string<char>}’ has no member named ‘eof’
+     while (getline(cin, input) && !input.eof()){
+                                          ^~~
