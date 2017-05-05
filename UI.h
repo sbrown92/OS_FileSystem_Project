@@ -1,8 +1,12 @@
+#ifndef _UI
+#define _UI
 
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include "Directory.h"
+
 
 using namespace std;
 
@@ -174,3 +178,6 @@ void type(string filename) {
 //     success = deleteList();
 //     return success;
 // }
+//
+
+#endif

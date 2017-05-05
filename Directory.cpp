@@ -1,6 +1,7 @@
 #include <iostream>
-using namespace std;
+#include "Directory.h"
 
+using namespace std;
   bool createFile(string name){
     if(!hasFreeSpace()){
       return(false);

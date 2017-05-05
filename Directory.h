@@ -1,3 +1,7 @@
+#ifndef _DIRECTORY
+#define _DIRECTORY
+
+
 #include <iostream>
 using namespace std;
 
@@ -19,3 +23,5 @@ private:
   vector<FileControlBlock> dir = new vector();
   counter = 0;
 };
+
+#endif
