@@ -10,33 +10,34 @@
 using namespace std;
 	
 FileSystem::FileSystem(){
+	int bsize
 	proc = new DiskProcessType(14, 100);	//Disk Process
 	numBlocksUsed = 0;                      //Number of blocks currently in use. 
 
-            //proc->enableLogging("log.txt");
 
 
 	for(int i = 0; i < proc->getNumBlocks(); i++){
                 freeBlocks.push_back(i);
 	}
 
-
-
-
 }
     
-    int FileSystem::getFreeBlock(){
-        int newBlock = freeBlocks.back();
-        freeBlocks.pop_back();
-        numBlocksUsed++;
-        
-        return newBlock;
-        
-    }
+int FileSystem::getFreeBlock(){
+    int newBlock = freeBlocks.back();
+    freeBlocks.pop_back();
+    numBlocksUsed++;
+    
+    return newBlock;
+    
+}
 
 
-bool FileSystem::hasFreeSpace(){
-	if(numBlocksUsed == proc->getNumBlocks())
+bool FileSystem::hasFreeSpace(int fileSize){
+    int numRequired = fileSize/proc->getBlockSize();
+    if(fileSize % proc->getBlockSize() != 0)
+        numRequired += 1;
+                
+	if((proc->getNumBlocks() - numBlocksUsed) < numRequired)
 		return false;
 	else
 		return true;
