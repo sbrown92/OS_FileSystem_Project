@@ -54,10 +54,17 @@ class FileSystem{
 		bool deleteFileFromDisk(int startBlock, int endBlock);                          // <---  Sam
 
 
-
-		//Call int read(int bnum, DiskBlockType *buffer);
+		//Description: Called by Directory to read data in a file
+		// Parameters: startBlock: An int representing pointer to the first block. 
+		//	       endBlock: An int representing a pointer to the last block. 
+		//Calls DiskProcessType::read(int bnum, DiskBlockType *buffer);
+		//Returns a string of the data in file
 		std::string readBlocks(int startBlock, int endBlock);
 		
+		//TODO:Decrement size, maybe do it in FCB/Directory class?
+		//Change corresponding freeSpace indeces to true
+		bool freeBlocks(int startBlock, int endBlock);
+
 
 };
 
