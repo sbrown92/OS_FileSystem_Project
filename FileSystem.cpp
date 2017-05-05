@@ -8,7 +8,6 @@ using namespace std;
 	
 	FileSystem::FileSystem(){
 		proc  = new DiskProcessType();
-		
 		//Initialize freeSpace vector to all true
 		for(int i=0; i<proc.getNumBlocks(); i++){
 			freeSpace[i] = true;
@@ -62,17 +61,21 @@ using namespace std;
 			return false;//Error
 	}
 
+	//Dont really need endBlock
 	//Call int read(int bnum, DiskBlockType *buffer);
 	string FileSystem::readBlocks(int startBlock, int endBlock){
 
 		string result;
-		DiskBlockType *buffer;
-		DiskProcessType::read(startBlock, *buffer);
-		
-		for(int i=0; i<buffer->data.length(); i++){
-			result[i] = buffer->data[i];
+		int curBlock = startBlock;
+		while(curBlock!=0){
+			DiskBlockType *buffer;
+			DiskProcessType::read(curBlock, *buffer);
+			for(int i=3; i<buffer->data.length(); i++){
+				result[i] = buffer->data[i];
+			}
+			int curBlock = ((int)buffer->data[0] + (int)buffer->data[1] + (int)buffer->data[2]) -1;
 		}
-
+		
 		return result;
 	}
 	
