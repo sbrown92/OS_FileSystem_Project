@@ -15,13 +15,6 @@ using namespace std;
 		size = 0;
 	}
 
-	string FileControlBlock::writeData(string str){
-		//Calls fileSystem function, pass in startBlock as param
-		FileSystem::writeExistingBlocks(startBlock, str);
-		//Updates blocks
-		//Update size
-	}
-	
 	int FileControlBlock::getStart(){
 		return startBlock;
 	}
