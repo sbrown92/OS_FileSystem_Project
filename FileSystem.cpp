@@ -81,7 +81,10 @@ bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data)
     
 }
 
-        //TODO Add cases for fail. 
+// Description: Called by Directory when a file is to be deleted
+// Parameters: startBlock: An int representing pointer to the first block.
+//	       endBlock: An int representing a pointer to the last block.
+//Returns true if successful, false otherwise
 bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
     DiskBlockType *buffer = new DiskBlockType(bsize);
     
@@ -151,24 +154,3 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
     
     return result;
 }
-
-	// Description: Called by Directory when a file is to be deleted
-	// Parameters: startBlock: An int representing pointer to the first block.
-	//	       endBlock: An int representing a pointer to the last block.
-	//Returns true if successful, false otherwise
-	bool FileSystem::freeBlocks(int startBlock, int endBlock){
-		int curBlock = startBlock;
-		int tmp = 0;
-		while(curBlock!=endBlock){//Go through list of blocks for file
-			tmp = curBlock; //Hold block position
-			//Move to next block in file's position
-			curBlock = ((((int)buffer->data[0])*100) + (((int)buffer->data[1])*10) + (int)buffer->data[2]) - 1;
-			//Set data in original block to NULL
-			proc[tmp]->data = NULL;
-			//tmp block is now free again
-            		freeBlocks.push_back(tmp);
-			numBlocksUsed--;
-		}
-		if(curBlock == endBlock){return true};
-		else {return false};
-	}
