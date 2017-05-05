@@ -21,8 +21,9 @@ class FileControlBlock{
 		string writeData(string str);
 		
 		int getStart();
-		
 		int getEnd();
+		void setStart(int s);
+		void setEnd(int e);
 		void increaseSize(int sz);
 		void decreaseSize(int sz);
 		//Calls fileSystem function, pass in startBlock as param
