@@ -11,55 +11,49 @@ In file included from /usr/include/c++/6.3.1/ios:38:0,
 /usr/include/c++/6.3.1/iosfwd:119:11: note: declaration of ‘std::ofstream {aka class std::basic_ofstream<char>}’
      class basic_ofstream;
            ^~~~~~~~~~~~~~
-In file included from Directory.h:6:0,
-                 from Directory.cpp:2:
-
 In file included from Directory.cpp:2:0:
-Directory.h:24:38: error: expected type-specifier before ‘vector’
-   vector<FileControlBlock> dir = new vector();
-                                      ^~~~~~
+Directory.h:24:63: error: could not convert ‘(operator new(24ul), (<statement>, ((std::vector<FileControlBlock>*)<anonymous>)))’ from ‘std::vector<FileControlBlock>*’ to ‘std::vector<FileControlBlock>’
+   vector<FileControlBlock> dir = new vector<FileControlBlock>();
+                                                               ^
 Directory.cpp: In function ‘bool createFile(std::__cxx11::string)’:
-Directory.cpp:7:22: error: ‘hasFreeSpace’ was not declared in this scope
+Directory.cpp:6:22: error: ‘hasFreeSpace’ was not declared in this scope
      if(!hasFreeSpace()){
                       ^
-Directory.cpp:10:5: error: ‘dir’ was not declared in this scope
+Directory.cpp:9:5: error: ‘dir’ was not declared in this scope
      dir[counter] = new FileControlBlock(name);
      ^~~
-Directory.cpp:10:9: error: ‘counter’ was not declared in this scope
+Directory.cpp:9:9: error: ‘counter’ was not declared in this scope
      dir[counter] = new FileControlBlock(name);
          ^~~~~~~
 Directory.cpp: In function ‘bool nameExists(std::__cxx11::string)’:
-Directory.cpp:17:50: error: ‘dir’ was not declared in this scope
+Directory.cpp:16:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:18:14: error: ‘i’ was not declared in this scope
+Directory.cpp:17:14: error: ‘i’ was not declared in this scope
        if(dir[i] == name){
               ^
 Directory.cpp: In function ‘std::__cxx11::string getFileName(int)’:
-Directory.cpp:26:12: error: ‘dir’ was not declared in this scope
+Directory.cpp:25:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getFile());
             ^~~
 Directory.cpp: In function ‘int getFileSize(int)’:
-Directory.cpp:30:12: error: ‘dir’ was not declared in this scope
+Directory.cpp:29:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getSize());
             ^~~
 Directory.cpp: In function ‘bool deleteFile(std::__cxx11::string)’:
-Directory.cpp:33:33: error: ‘getFCB’ was not declared in this scope
+Directory.cpp:32:33: error: ‘getFCB’ was not declared in this scope
      return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
                                  ^
-Directory.cpp:33:83: error: ‘freeSpace’ was not declared in this scope
+Directory.cpp:32:83: error: ‘freeSpace’ was not declared in this scope
      return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
                                                                                    ^
 Directory.cpp: In function ‘FileControlBlock getFCB(std::__cxx11::string)’:
-Directory.cpp:36:50: error: ‘dir’ was not declared in this scope
+Directory.cpp:35:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:37:14: error: ‘i’ was not declared in this scope
+Directory.cpp:36:14: error: ‘i’ was not declared in this scope
        if(dir[i] == name)
               ^
-FileControlBlock.cpp:45:35: error: no ‘std::__cxx11::string FileControlBlock::getData()’ member function declared in class ‘FileControlBlock’
-  string FileControlBlock::getData(){
-                                   ^
 In file included from FileSystem.cpp:6:0:
 diskprocess.h:60:3: error: ‘ofstream’ does not name a type
    ofstream logfile;   // the file to log debug info to if logging
@@ -81,25 +75,6 @@ diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
 diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
        logfile << "DISK: Terminating.\n";
        ^~~~~~~
-In file included from FileSystem.cpp:7:0:
-FileSystem.h: At global scope:
-FileSystem.h:65:47: error: ‘bool FileSystem::freeBlocks(int, int)’ conflicts with a previous declaration
-   bool freeBlocks(int startBlock, int endBlock);
-                                               ^
-FileSystem.h:14:19: note: previous declaration ‘std::vector<int> FileSystem::freeBlocks’
-   std::vector<int>freeBlocks;
-                   ^~~~~~~~~~
-FileSystem.cpp: In constructor ‘FileSystem::FileSystem()’:
-FileSystem.cpp:20:17: error: ‘((FileSystem*)this)->FileSystem::freeBlocks’ does not have class type
-                 freeBlocks.push_back(i);
-                 ^~~~~~~~~~
-FileSystem.cpp: In member function ‘int FileSystem::getFreeBlock()’:
-FileSystem.cpp:29:24: error: ‘((FileSystem*)this)->FileSystem::freeBlocks’ does not have class type
-         int newBlock = freeBlocks.back();
-                        ^~~~~~~~~~
-FileSystem.cpp:30:9: error: ‘((FileSystem*)this)->FileSystem::freeBlocks’ does not have class type
-         freeBlocks.pop_back();
-         ^~~~~~~~~~
 FileSystem.cpp: In member function ‘bool FileSystem::saveFileToDisk(int, int&, std::__cxx11::string)’:
 FileSystem.cpp:67:42: error: ‘strcpy’ was not declared in this scope
          strcpy(buffer->data, test.c_str());
@@ -114,9 +89,6 @@ FileSystem.cpp:96:32: error: ‘strlen’ is not a member of ‘std’
 FileSystem.cpp:97:40: error: ‘strlen’ is not a member of ‘std’
                      for(int i = 0; i < std::strlen(buffer->data); i++){
                                         ^~~
-FileSystem.cpp:108:21: error: ‘((FileSystem*)this)->FileSystem::freeBlocks’ does not have class type
-                     freeBlocks.push_back(currentBlock);
-                     ^~~~~~~~~~
 FileSystem.cpp: In member function ‘int FileSystem::getNextFree()’:
 FileSystem.cpp:124:9: error: ‘freeSpace’ was not declared in this scope
    while(freeSpace[i] != true){
@@ -142,14 +114,12 @@ In file included from /usr/include/c++/6.3.1/ios:38:0,
 /usr/include/c++/6.3.1/iosfwd:119:11: note: declaration of ‘std::ofstream {aka class std::basic_ofstream<char>}’
      class basic_ofstream;
            ^~~~~~~~~~~~~~
-
 In file included from UI.h:8:0,
                  from UI.cpp:10:
-Directory.h:24:38: error: expected type-specifier before ‘vector’
-   vector<FileControlBlock> dir = new vector();
-                                      ^~~~~~
+Directory.h:24:63: error: could not convert ‘(operator new(24ul), (<statement>, ((std::vector<FileControlBlock>*)<anonymous>)))’ from ‘std::vector<FileControlBlock>*’ to ‘std::vector<FileControlBlock>’
+   vector<FileControlBlock> dir = new vector<FileControlBlock>();
+                                                               ^
 In file included from UI.cpp:10:0:
 UI.h: In function ‘void edit(std::__cxx11::string)’:
 UI.h:149:42: error: ‘std::__cxx11::string {aka class std::__cxx11::basic_string<char>}’ has no member named ‘eof’
      while (getline(cin, input) && !input.eof()){
-                                          ^~~
