@@ -4,7 +4,7 @@
 #ifndef _FILESYSTEM
 #define _FILESYSTEM
 #include <vector>
-#include "DiskProcess.h"
+#include "diskprocess.h"
 
 class FileSystem{
 
