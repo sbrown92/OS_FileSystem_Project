@@ -29,6 +29,14 @@ using namespace std;
 		return endBlock;
 	}
 
+	void FileControlBlock::increaseSize(int sz){
+		size+=sz;	
+	}
+	
+	void FileControlBlock::decreaseSize(int sz){
+		size-=sz;
+	}
+
 	string FileControlBlock::getData(){
 		//Calls fileSystem function, pass in startBlock as param
 	}
