@@ -29,6 +29,13 @@ using namespace std;
 		return endBlock;
 	}
 
+	void FileControlBlock::setStart(int s){
+		startBlock = s;
+	}
+	void FileControlBlock::setEnd(int e){
+		endBlock = e;
+	}
+
 	void FileControlBlock::increaseSize(int sz){
 		size+=sz;	
 	}
