@@ -29,11 +29,11 @@ using namespace std;
     return(dir[file].getSize());
   }
   bool deleteFile(string name){
-    return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+    return(deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
   }
   FileControlBlock getFCB(string name){
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(*it->getFileName() == name)
+      if(*it.getFileName() == name)
         return(*it);
     }
   }
