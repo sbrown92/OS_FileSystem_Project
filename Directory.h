@@ -21,7 +21,7 @@ public:
   FileControlBlock getFCB(string);
 
 private:
-  vector<FileControlBlock> dir = new vector();
+  vector<FileControlBlock> dir = new vector<FileControlBlock>();
   int counter = 0;
 };
 
