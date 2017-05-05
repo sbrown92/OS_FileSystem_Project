@@ -1,18 +1,57 @@
 
 
 #include <iostream>
-#include "diskprocess.h"
-#include "FileControlBlock.h"
+#include "DiskProcess.h"
+#include "FileSystem.h"
+
 
 using namespace std;
 	
 	FileSystem::FileSystem(){
-		proc  = new DiskProcessType();
-		//Initialize freeSpace vector to all true
-		for(int i=0; i<proc.getNumBlocks(); i++){
-			freeSpace[i] = true;
+		proc = new DiskProcessType(10, 100);	//Disk Process
+		numBlocksUsed = 0;						//Number of blocks currently in use. 
+
+
+
+		for(int i = 0; i < proc->getNumBlocks(); i++){
+                    freeBlocks.push_back(i);
 		}
+
+
+
+
 	}
+    //Description: Called by the directory when a new file is added to 
+	// 			   they system. 
+	//Return: The pointer to the new file's first block. 
+    int FileSystem::createFile(){
+        int newBlock = freeBlocks.back();
+        freeBlocks.pop_back();
+        numBlocksUsed++;
+        
+        return newBlock;
+        
+    }	
+
+    //Description: Check whether or not the system has free blocks.
+	//Return: True if there are free blocks, False if not. 
+	bool FileSystem::hasFreeSpace(){
+		if(numBlocksUsed == proc->getNumBlocks())
+			return false;
+		else
+			return true;
+	}
+        
+        
+
+
+
+
+
+
+
+
+
 
 	int FileSystem::getNextFree(){
 		int i=0;
@@ -34,7 +73,7 @@ using namespace std;
 		int nextFreeBlock = 0;
 		//Fill buffer with str			
 		for (int i=0; i<str.length(); i++){ 
-			buffer->data[i]=str[i];
+			tbuffer->data[i]=str[i];
 		}
 		while(blocksNeeded>0){
 			DiskBlockType *buffer;
@@ -63,6 +102,7 @@ using namespace std;
 		return true; //Successful write
 	}
 
+        
 	//Write str into diskBlockType buffer
 	//int write(int bnum, DiskBlockType *buffer);
 	//Increment size if needed
@@ -99,13 +139,3 @@ using namespace std;
 		return result;
 	}
 	
-	//Decrement size
-	//Change corresponding freeSpace indeces to true
-	bool FileSystem::freeBlocks(int startBlock, int endBlock){
-
-
-	}
-
-	string FileSystem::getData(int startBlock, int endBlock){
-	
-	}

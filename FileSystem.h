@@ -3,17 +3,16 @@
 
 #ifndef _FILESYSTEM
 #define _FILESYSTEM
-#include <vector>;
-#include "DiskProcessType.h"
+#include <vector>
+#include "DiskProcess.h"
 
 class FileSystem{
 
 	private:
-		int remainingBlocks;
-		int blocksInUse;
-		vector<bool> freeSpace = new vector();
-		DiskProcessType proc;
-
+		DiskProcessType* proc;
+        int numBlocksUsed;
+		std::vector<int>freeBlocks;
+                
 
 
 
@@ -30,13 +29,13 @@ class FileSystem{
 
 		//Description: Check whether or not the system has free blocks.
 		//Return: True if there are free blocks, False if not. 
-		bool hasFreeSpace();									// <---  Sam 
+		bool hasFreeSpace();									
 
 
 		//Description: Called by the directory when a new file is added to 
 		// 			   they system. 
 		//Returnn: The pointer to the new file's first block. 
-		int createFile();										// <---- Sam
+		int createFile();									
 	
 		// Description: Called By the UI when EDITing a file.
 		// Parameters: startblock - The first block of the file. Value will
@@ -47,35 +46,21 @@ class FileSystem{
 		//						  is stored along with the return value. 
 		//			  data: The data to be appended to the end of the file. 
 		// Return: The first block of the file. 
-		bool saveFileToDisk(int& startBlock, int& endBlock, string data); 		// <---  Sam
+		bool saveFileToDisk(int& startBlock, int& endBlock, std::string data); 		// <---  Sam
 
+
+		// Description: Called by the Directory when a file is being deleted. 
+		// Parameters: startBlock: An int representing pointer to the first block. 
+		//			   endBlock: An int representing a pointer to the last block. 
+		// Return: True if file was successfully deleted, False if an error occured. 
+		bool deleteFileFromDisk(int startBlock, int endBlock);                          // <---  Sam
 
 
 
 		//Call int read(int bnum, DiskBlockType *buffer);
-		string readBlocks(int startBlock, int endBlock);
+		std::string readBlocks(int startBlock, int endBlock);
 		
-		//Decrement size
-		bool freeBlocks(int startBlock, int endBlock);
 
-		string getData(int startBlock, int endBlock);
+};
 
-}
-
-/*Use this for getNextFree function?
-
-int FileSystem::getFreeBlock(){
-	int blockIndex = 0;
-	if (freespace->getBlockSize() != 0){
-		blockIndex = freespace->getBlockPointer();//save block location
-		freespace->setBlockSize(freespace->getBlockSize()-1);//decrement freespace size
-		freespace->setBlockPointer(freespace->getBlockPointer()+1);//move freespace pointer forward
-	}
-	else{
-		blockIndex = -1;
-	}
-	cout << "freespace blocks left = " << freespace->getBlockSize() << "/" << DISK_SIZE << endl;
-	return blockIndex;
-}
-
-*/
+#endif
