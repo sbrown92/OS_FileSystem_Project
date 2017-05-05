@@ -61,7 +61,6 @@ class FileSystem{
 		//Returns a string of the data in file
 		std::string readBlocks(int startBlock, int endBlock);
 		
-		//TODO:Decrement size, maybe do it in FCB/Directory class?
 		//Change corresponding freeSpace indeces to true
 		bool freeBlocks(int startBlock, int endBlock);
 
