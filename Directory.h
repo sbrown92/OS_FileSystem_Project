@@ -22,7 +22,7 @@ public:
 
 private:
   vector<FileControlBlock> dir = new vector();
-  counter = 0;
+  int counter = 0;
 };
 
 #endif
