@@ -90,10 +90,8 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
             do{
                 string next = "";
                 if (proc->read(currentBlock, buffer) != -1){
-                    std::cout<<"data"<<std::endl;
                     std::cout<<std::strlen(buffer->data)<<std::endl;
                     for(int i = 0; i < std::strlen(buffer->data); i++){
-                        std::cout<<"Check #"<<std::endl;
                         if(i < 3){
                             next += buffer->data[i];
                         }
@@ -104,10 +102,9 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
                     	std::cout<<"ERROR: Couldn't write blank file at block: " << std::endl;
                     	return false;
                     }
-
-                    std::cout<<"Next: " << std::atoi(next.c_str()) << std::endl;
+                    freeBlocks.push_back(currentBlock);
+                    numBlocksUsed--;
                     currentBlock = std::atoi(next.c_str());
-                    std::cout<<"Cur: " << currentBlock << std::endl;
                 } else {
                 	std::cout<<"ERROR: Counldn't open file at block: " + currentBlock << std::endl;
                 	return false;
