@@ -10,14 +10,20 @@
 using namespace std;
 	
 	FileSystem::FileSystem(){
-		proc = new DiskProcessType(10, 100);	//Disk Process
-		numBlocksUsed = 0;			//Number of blocks currently in use. 
+		proc = new DiskProcessType(14, 100);	//Disk Process
+		numBlocksUsed = 0;                      //Number of blocks currently in use. 
+
+                //proc->enableLogging("log.txt");
+
 
 		for(int i = 0; i < proc->getNumBlocks(); i++){
                     freeBlocks.push_back(i);
 		}
-	}
 
+
+
+
+	}
         
         int FileSystem::getFreeBlock(){
             int newBlock = freeBlocks.back();
@@ -26,10 +32,9 @@ using namespace std;
             
             return newBlock;
             
-        }	
+        }
 
-    	//Description: Check whether or not the system has free blocks.
-	//Return: True if there are free blocks, False if not. 
+
 	bool FileSystem::hasFreeSpace(){
 		if(numBlocksUsed == proc->getNumBlocks())
 			return false;
@@ -38,12 +43,16 @@ using namespace std;
 	}
         
         
+        //TODO: Add in checks to see if file does not save correctly. 
         bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
+            DiskBlockType *buffer = new DiskBlockType(this->proc->getBlockSize());
             int temp = (data.length() / (proc->getBlockSize() - 3));
             if(data.length() % (proc->getBlockSize() - 3) != 0)
                 temp++;
+                
             
-            int currentBlock = this->getFreeBlock();
+            int indexBlock = startBlock;
+            int currentBlock = getFreeBlock();
             for(int i = 0; i < temp; i++){
                 std::string test = "";
                 
@@ -53,33 +62,27 @@ using namespace std;
                     test += "00";
                 
                 test += std::to_string(currentBlock);
-                test+= data.substr((i * (proc->getBlockSize() - 3)), proc->getBlockSize() - 3);
+                test += data.substr((i * (proc->getBlockSize() - 3)), proc->getBlockSize() - 3);
+
+                strcpy(buffer->data, test.c_str());
+                if(proc->write(indexBlock, buffer) == -1)
+                        return false;
                 
-                std::cout<<test<<std::endl;
-                
-                
+                indexBlock = currentBlock;
                 if(i + 2 == temp){
                     endBlock = currentBlock;
                     currentBlock = 0;
                 }else
                     currentBlock = this->getFreeBlock();
-                
-                
             }
             
             
-            
-            
-            
+            return true;
             
         }
         
 
 /*
-=======
-
-
->>>>>>> d68bc9b4d0b98302f7b5a3d31b24a679f51e91d0
 	int FileSystem::getNextFree(){
 		int i=0;
 		while(freeSpace[i] != true){
@@ -93,16 +96,15 @@ using namespace std;
 	//Write str into diskBlockType buffer
 	//Call  int write(int bnum, DiskBlockType *buffer);
 	//Increment size, call getNumBlocks, getBlockSize, do some math with str.length
-	
-	//Find how many blocks will be needed
-	//Write string into buffer, reserving first three chars for 'next block pointer index'
-	//Write to disk on next available block
-	//Update this blocks
 	bool FileSystem::writeNewBlocks(string str){
 		int blocksNeeded = (str.length()/proc.getNumBlocks()) +1;
 		int blockSize = proc.getBlockSize();
 		int j=0;
 		int nextFreeBlock = 0;
+		//Fill buffer with str			
+		for (int i=0; i<str.length(); i++){ 
+			tbuffer->data[i]=str[i];
+		}
 		while(blocksNeeded>0){
 			DiskBlockType *buffer;
 			int i=3;
@@ -111,12 +113,12 @@ using namespace std;
 				i++;
 				j++;
 			}
-			nextFreeBlock = getNextFree();
-			if( DiskProcessType::write(nextFreeBlock , buffer) == 0 )
+			if( DiskProcessType::write(getNextFree() , buffer) == 0 )
 				//Inc size
 				//Update freeSpace vector
 				//Store next block in first 3 chars of data
 				FileControlBlock::increaseSize(1);
+				nextFreeBlock = getNextFree();
 				freeSpace[nextFreeBlock] = false;
 				buffer->data[2] = (char)nextFreeBlock;
 				nextFreeBlock = nextFreeBlock%10;
