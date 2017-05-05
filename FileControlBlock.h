@@ -23,7 +23,8 @@ class FileControlBlock{
 		int getStart();
 		
 		int getEnd();
-		
+		void increaseSize(int sz);
+		void decreaseSize(int sz);
 		//Calls fileSystem function, pass in startBlock as param
 		string getData();
 
