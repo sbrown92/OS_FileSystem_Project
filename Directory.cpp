@@ -33,7 +33,7 @@ using namespace std;
   }
   FileControlBlock getFCB(string name){
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(dir[i] == name)
-        return(dir[i]);
+      if(*it->name == name)
+        return(*it);
     }
   }
