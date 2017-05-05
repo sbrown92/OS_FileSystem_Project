@@ -2,8 +2,8 @@
  File: diskprocess.cpp
  This source file defines  a disk emulation process that
  will serve as the lowest level of a file system.
- In the include file, there is one class DiskBlockType 
- which defines what a block is, and  one class DiskProcess that defines 
+ In the include file, there is one class DiskBlockType
+ which defines what a block is, and  one class DiskProcess that defines
  the disk and operations on the disk. Constructors and destructors are
  defined in the include file. The remaining function implementations
  are in this file.
@@ -11,19 +11,12 @@
 
  Author: D.M. Lyons dlyons@fordham.edu
  Most recent revision: Spring 2016
- 
+
  If you use this program or any part of it you need to incude this entire
  comment. No warranty or support implied.
- 
+
  c dmlyons 2012- 2017 Fordham CIS.
 */
-
-#include <iostream>
-#include <fstream>
-#include <vector>
-
-using namespace std;
-
 #include "diskprocess.h"
 
  // private member function to create a block if it has
@@ -59,17 +52,17 @@ int DiskProcessType::read(int bnum, DiskBlockType *buffer){
   // do the data write
   if (buffer->data!=NULL && disk[bnum]->data!=NULL) {
     for (int i=0; i<blockSize; i++)
-      buffer->data[i] = disk[bnum]->data[i]; 
+      buffer->data[i] = disk[bnum]->data[i];
     numReads++;
   }
   else cerr<<"DISK: Bad buffer pointers sent to read\n";
-  
+
   // do logging if enabled
-  if (logging) 
+  if (logging)
     logfile<<"DISK: Read to block "<<bnum<<"\n";
   return 0;
 }
-  
+
   // write a block to the disk. Will create the block data
   // if it did not exist yet.
 int DiskProcessType::write(int bnum, DiskBlockType *buffer){
@@ -92,9 +85,9 @@ int DiskProcessType::write(int bnum, DiskBlockType *buffer){
     numWrites++;
   }
   else cerr<<"DISK: Bad buffer pointers sent to write\n";
-  
+
   // do logging if enabled
-  if (logging) 
+  if (logging)
     logfile<<"DISK: Write to block "<<bnum<<"\n";
   return 0;
 }
@@ -106,7 +99,7 @@ bool DiskProcessType::enableLogging(string logfileName){
     logging = true;
     logfile<<"DISK: Logging enabled to "<<logfileName<<"\n";
     logfile<<"DISK: block size "<<blockSize
-	  <<" number of blocks "<<numBlocks<<"\n"; 
+	  <<" number of blocks "<<numBlocks<<"\n";
   } else cerr<<"DISK: Could not open "<<logfileName<<"\n";
   return logging;
 }
@@ -121,7 +114,7 @@ void DiskProcessType::writeStats() {
     logfile << "DISK: Blocks created were "<<numCreated<<" of total "
 	    << numBlocks<<" which is "
 	    << 100*float(numCreated)/float(numBlocks)<<" %\n";
-  
+
     return;
 }
 

@@ -3,7 +3,7 @@
  This include file defines the class for a disk emulation process that
  will serve as the lowest level of a file system.
  There is one class DiskBlockType which defines what a block is, and
- one class DiskProcess that defines the disk and operations on the disk. 
+ one class DiskProcess that defines the disk and operations on the disk.
  The constructor can be parameterized by
  the size of the disk blocks and the number of disk blocks on the disk.
  The class provides routines for reading and writing blocks to the disk.
@@ -12,10 +12,10 @@
 
  Author: D.M. Lyons dlyons@fordham.edu
  Most recent revision: Spring 2016
- 
+
  If you use this program or any part of it you need to incude this entire
  comment. No warranty or support implied.
- 
+
  c dmlyons 2012- 2016 Fordham CIS.
 */
 
@@ -25,6 +25,11 @@
 #define ERROR_RETURN -1
 #define SUCCESS_RETURN 0
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
 // This class define what a bock on a disk is
 
 class DiskBlockType {
@@ -61,7 +66,7 @@ class DiskProcessType {
   vector<DiskBlockType*> disk; // this is the data for the disk
 
   bool createBlock(int blockNumber); // ceate a bock where none was before
-  
+
  public:
 
   DiskProcessType(int bsize, int bnum) {// mke the disk
@@ -87,11 +92,11 @@ class DiskProcessType {
 
   int getBlockSize() { return blockSize; }
   int getNumBlocks() { return numBlocks; }
-  
+
   // read a block from the disk. Will create the block data
   // if it did not exist yet
   int read(int bnum, DiskBlockType *buffer);
-  
+
   // write a block to the disk. Will create the block data
   // if it did not exist yet.
   int write(int bnum, DiskBlockType *buffer);
