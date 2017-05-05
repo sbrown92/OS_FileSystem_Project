@@ -10,22 +10,14 @@
 using namespace std;
 	
 	FileSystem::FileSystem(){
-<<<<<<< HEAD
-		proc = new DiskProcessType(14, 100);	//Disk Process
-		numBlocksUsed = 0;                      //Number of blocks currently in use. 
-
-                //proc->enableLogging("log.txt");
-
-=======
 		proc = new DiskProcessType(10, 100);	//Disk Process
 		numBlocksUsed = 0;			//Number of blocks currently in use. 
->>>>>>> d68bc9b4d0b98302f7b5a3d31b24a679f51e91d0
 
 		for(int i = 0; i < proc->getNumBlocks(); i++){
                     freeBlocks.push_back(i);
 		}
 	}
-<<<<<<< HEAD
+
         
         int FileSystem::getFreeBlock(){
             int newBlock = freeBlocks.back();
@@ -37,7 +29,6 @@ using namespace std;
         }
 
 
-=======
 
 	//Description: Called by the directory when a new file is added to 
 	//the system. 
@@ -52,14 +43,12 @@ using namespace std;
 
     	//Description: Check whether or not the system has free blocks.
 	//Return: True if there are free blocks, False if not. 
->>>>>>> d68bc9b4d0b98302f7b5a3d31b24a679f51e91d0
 	bool FileSystem::hasFreeSpace(){
 		if(numBlocksUsed == proc->getNumBlocks())
 			return false;
 		else
 			return true;
 	}
-<<<<<<< HEAD
         
         
         bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
