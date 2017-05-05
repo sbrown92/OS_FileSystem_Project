@@ -1,8 +1,9 @@
 #ifndef _DIRECTORY
 #define _DIRECTORY
 
-
 #include <iostream>
+#include "FileControlBlock.h"
+#include "FileSystem.h"
 using namespace std;
 
 class Directory {
