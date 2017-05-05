@@ -1,4 +1,7 @@
 #include <iostream>
+#include "FileSystem.h"
+#include "FileControlBlock.h"
+
 using namespace std;
 
 class Directory {
@@ -17,5 +20,5 @@ public:
 
 private:
   vector<FileControlBlock> dir = new vector();
-  counter = 0;
+  int counter = 0;
 };
