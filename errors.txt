@@ -60,36 +60,7 @@ Directory.cpp:34:3: error: ‘FileControlBlock’ does not name a type
    FileControlBlock getFCB(string name){
    ^~~~~~~~~~~~~~~~
 In file included from FileControlBlock.cpp:4:0:
-FileControlBlock.h:9:3: error: ‘string’ does not name a type
-   string fileName;
-   ^~~~~~
-FileControlBlock.h:16:27: error: expected ‘)’ before ‘name’
-   FileControlBlock(string name);
-                           ^~~~
-FileControlBlock.h:21:3: error: ‘string’ does not name a type
-   string writeData(string str);
-   ^~~~~~
-FileControlBlock.h:31:3: error: ‘string’ does not name a type
-   string getData();
-   ^~~~~~
-FileControlBlock.h:33:1: error: expected ‘;’ after class definition
- }
- ^
-FileControlBlock.cpp:10:2: error: prototype for ‘FileControlBlock::FileControlBlock(std::__cxx11::string)’ does not match any in class ‘FileControlBlock’
-  FileControlBlock::FileControlBlock(string name){
-  ^~~~~~~~~~~~~~~~
-In file included from FileControlBlock.cpp:4:0:
-FileControlBlock.h:6:7: error: candidates are: constexpr FileControlBlock::FileControlBlock(FileControlBlock&&)
- class FileControlBlock{
-       ^~~~~~~~~~~~~~~~
-FileControlBlock.h:6:7: error:                 constexpr FileControlBlock::FileControlBlock(const FileControlBlock&)
-FileControlBlock.h:6:7: error:                 FileControlBlock::FileControlBlock()
-FileControlBlock.cpp:17:47: error: no ‘std::__cxx11::string FileControlBlock::writeData(std::__cxx11::string)’ member function declared in class ‘FileControlBlock’
-  string FileControlBlock::writeData(string str){
-                                               ^
-FileControlBlock.cpp:51:35: error: no ‘std::__cxx11::string FileControlBlock::getData()’ member function declared in class ‘FileControlBlock’
-  string FileControlBlock::getData(){
-                                   ^
+
 FileSystem.cpp:6:25: fatal error: DiskProcess.h: No such file or directory
 
                          ^
