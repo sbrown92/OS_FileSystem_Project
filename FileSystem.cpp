@@ -19,14 +19,13 @@ using namespace std;
 	//Description: Called by the directory when a new file is added to 
 	//the system. 
 	//Return: The pointer to the new file's first block. 
-    int FileSystem::createFile(){
-        int newBlock = freeBlocks.back();
-        freeBlocks.pop_back();
-        numBlocksUsed++;
+    	int FileSystem::createFile(){
+        	int newBlock = freeBlocks.back();
+        	freeBlocks.pop_back();
+        	numBlocksUsed++;
         
-        return newBlock;
-        
-    }	
+       		return newBlock;
+    	}	
 
     	//Description: Check whether or not the system has free blocks.
 	//Return: True if there are free blocks, False if not. 
