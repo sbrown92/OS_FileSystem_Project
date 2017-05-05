@@ -3,59 +3,45 @@ using namespace std;
 
 class Directory {
 public:
-  //Constructor
-  Directory(string name){
-    createNode(name);
-  }
-  //Create New Node
-  bool createNode(string name){
-    bool success = true;
-    listNode * newNode = new listNode;
-    newNode->name = name;
-    newNode->fcb = FileControlBlock(name);
-    newNode->next = NULL;
-    if(head == NULL){
-      head = newNode;
-      tail = head;
+  bool createFile(string name){
+    if(!hasFreeSpace()){
+      return(false);
     }
-    else{
-      tail->next = newNode;
-      tail = newNode;
+    dir[counter] = new FileControlBlock(name);
+    counter++;
+    return(true);
+  }
+
+  bool nameExists(string name){
+    bool exists = false;
+    for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+      if(dir[i] == name){
+        exists = true;
+      }
     }
-    if(!hasFreeSpace())
-      success = false;
-    return(success);
+    return(exists);
   }
-void printList(){
-  listNode *ptr = head;
-  while (ptr != NULL){
-    cout << ptr->name  << " -> ";
-    ptr = ptr->next;
+
+  string getFileName(int file){
+    return(dir[file].getFile());
   }
-}
-bool nameExists(string name){
-  listNode *ptr = head;
-  bool exists = false;
-  while (ptr != NULL){
-    if(ptr->name == name)
-      isValid = true;
-    ptr = ptr->next;
+
+  int getFileSize(int file){
+    return(dir[file].getSize());
   }
-  return(exists);
-}
+  bool deleteFile(string name){
+    return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+  }
+  FileControlBlock getFCB(string name){
+    for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
+      if(dir[i] == name)
+        return(dir[i]);
+    }
+  }
 
 
 private:
-
-  struct listNode {
-    string name;
-    FileControlBlock fcb;
-    listNode *next;
-  }
-
-  listNode *head = NULL;
-  listNode *tail = NULL;
-
-
+  vector<FileControlBlock> dir = new vector();
+  counter = 0;
 
 };
