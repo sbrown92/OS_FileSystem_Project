@@ -7,7 +7,7 @@
 using namespace std;
 
 /* ------------------------------------
-DEBUG PURPOSES ONLY: 
+DEBUG PURPOSES ONLY:
 --------------------------------------- */
 vector <string> getFileNameList() {
     vector <string> myvector;
@@ -58,7 +58,7 @@ void create_file(string filename) {
     }
 
     /* check for invalid special characters */
-    bool valid = true; 
+    bool valid = true;
     int num_periods = 0;
     for (int i = 0; i < filename.length(); i++) {
         char c = filename[i];
@@ -112,7 +112,7 @@ void delete_file(string filename) {
         return;
     }
 
-    return; 
+    return;
 
 }
 
@@ -120,7 +120,7 @@ void dir() {
         vector <string> fileList = getFileNameList();
 
         cout << "ATOS-FS Directory Listing" << endl;
-        cout << "	" << "FILENAME" << "			" << "SIZE (blks)" << endl; 
+        cout << "	" << "FILENAME" << "			" << "SIZE (blks)" << endl;
         for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
            cout << "	" << *it << "			" << getSize(*it) << endl;
         }
@@ -143,7 +143,7 @@ void edit(string filename) {
 
     string input = "";
     while (getline(cin, input) && !input.eof()){
-       
+
     }
     cin.clear();
 

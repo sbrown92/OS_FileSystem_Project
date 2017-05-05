@@ -13,7 +13,7 @@ using namespace std;
 int main() {
     string command;
     string filename;
-    string input; 
+    string input;
 
     istringstream iss;
     cout << "$$ ";
@@ -22,7 +22,7 @@ int main() {
         getline(cin, input);
         iss.str(input);
         cout << input <<endl;
-        iss >> skipws >> command >> filename;       
+        iss >> skipws >> command >> filename;
 
         if (command == "CREATE") {
             create_file(filename);
@@ -38,12 +38,12 @@ int main() {
         }
         else if (cin.eof())
         {
-            
+
         }
 
         // else if command == "TYPE" {
             // check file exists
-        //     type(); 
+        //     type();
         // }
         // else if command == "EXIT" {
         //     exit();
