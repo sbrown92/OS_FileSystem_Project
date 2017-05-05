@@ -127,7 +127,7 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
 	//	       endBlock: An int representing a pointer to the last block. 
 	// Calls DiskProcessType::read(int bnum, DiskBlockType *buffer);
 	// Returns a string of the data in file
-	string FileSystem::readBlocks(int startBlock, int endBlock){
+string FileSystem::readBlocks(int startBlock, int endBlock){
     string result = "";
     DiskBlockType* buffer = new DiskBlockType(bsize);
     int currentBlock = startBlock;
