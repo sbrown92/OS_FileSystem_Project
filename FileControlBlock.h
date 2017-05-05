@@ -3,7 +3,12 @@
 #ifndef _FILECONTROLBLOCK
 #define _FILECONTROLBLOCK
 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string>
+#include "diskprocess.h"
+
 using namespace std;
 
 
