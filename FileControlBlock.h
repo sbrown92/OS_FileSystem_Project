@@ -4,6 +4,8 @@
 #define _FILECONTROLBLOCK
 
 #include <string>
+using namespace std;
+
 
 class FileControlBlock{
 
