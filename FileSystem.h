@@ -12,26 +12,45 @@ class FileSystem{
 		int remainingBlocks;
 		int blocksInUse;
 		vector<bool> freeSpace = new vector();
-	
-		//Search for next free block, linearly through vector? or keep track of nextFree somewhere else
-		//Can check remainingBlocks first to save time, exit if none left
+		DiskProcessType proc;
+
+
+
+
+		//Description: Function to get the next free block from the disk process. 
+		//Return: A pointer to the next free block. 
 		int getNextFree();
 
-		DiskProcessType proc;
 
 	public:
 		
-		FileSystem();
 
+		//Class Constructor. 
+		FileSystem();											// <---- Sam
+
+		//Description: Check whether or not the system has free blocks.
+		//Return: True if there are free blocks, False if not. 
 		bool hasFreeSpace();									// <---  Sam 
+
+
+		//Description: Called by the directory when a new file is added to 
+		// 			   they system. 
+		//Returnn: The pointer to the new file's first block. 
+		int createFile();										// <---- Sam
 	
 		// Description: Called By the UI when EDITing a file.
-		// Parameters endblock: The variable which will store the end block 
-		//						of the file. Passed by reference because it
-		//						is stored along with the return value. 
+		// Parameters: startblock - The first block of the file. Value will
+		//							only be changed if this is the first time
+		//							the file is being written too.  
+		//			   endblock: The variable which will store the end block 
+		//						  of the file. Passed by reference because it
+		//						  is stored along with the return value. 
 		//			  data: The data to be appended to the end of the file. 
 		// Return: The first block of the file. 
-		bool saveFileToDisk(int& endBlock, string data); 		// <---  Sam
+		bool saveFileToDisk(int& startBlock, int& endBlock, string data); 		// <---  Sam
+
+
+
 
 		//Call int read(int bnum, DiskBlockType *buffer);
 		string readBlocks(int startBlock, int endBlock);
