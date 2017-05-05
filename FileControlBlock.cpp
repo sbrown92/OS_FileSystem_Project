@@ -42,7 +42,3 @@ using namespace std;
 		size-=sz;
 	}
 
-	string FileControlBlock::getData(){
-		//Calls fileSystem function, pass in startBlock as param
-	}
-
