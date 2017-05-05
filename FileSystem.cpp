@@ -1,6 +1,8 @@
 
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include "DiskProcess.h"
 #include "FileSystem.h"
 
@@ -8,9 +10,10 @@
 using namespace std;
 	
 	FileSystem::FileSystem(){
-		proc = new DiskProcessType(10, 100);	//Disk Process
-		numBlocksUsed = 0;						//Number of blocks currently in use. 
+		proc = new DiskProcessType(14, 100);	//Disk Process
+		numBlocksUsed = 0;                      //Number of blocks currently in use. 
 
+                //proc->enableLogging("log.txt");
 
 
 		for(int i = 0; i < proc->getNumBlocks(); i++){
@@ -21,20 +24,17 @@ using namespace std;
 
 
 	}
-    //Description: Called by the directory when a new file is added to 
-	// 			   they system. 
-	//Return: The pointer to the new file's first block. 
-    int FileSystem::createFile(){
-        int newBlock = freeBlocks.back();
-        freeBlocks.pop_back();
-        numBlocksUsed++;
         
-        return newBlock;
-        
-    }	
+        int FileSystem::getFreeBlock(){
+            int newBlock = freeBlocks.back();
+            freeBlocks.pop_back();
+            numBlocksUsed++;
+            
+            return newBlock;
+            
+        }
 
-    //Description: Check whether or not the system has free blocks.
-	//Return: True if there are free blocks, False if not. 
+
 	bool FileSystem::hasFreeSpace(){
 		if(numBlocksUsed == proc->getNumBlocks())
 			return false;
@@ -43,16 +43,44 @@ using namespace std;
 	}
         
         
+        bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
+            int temp = (data.length() / (proc->getBlockSize() - 3));
+            if(data.length() % (proc->getBlockSize() - 3) != 0)
+                temp++;
+            
+            int currentBlock = this->getFreeBlock();
+            for(int i = 0; i < temp; i++){
+                std::string test = "";
+                
+                if(std::to_string(currentBlock).length() == 2)
+                    test += "0";
+                else if(std::to_string(currentBlock).length() == 1)
+                    test += "00";
+                
+                test += std::to_string(currentBlock);
+                test+= data.substr((i * (proc->getBlockSize() - 3)), proc->getBlockSize() - 3);
+                
+                std::cout<<test<<std::endl;
+                
+                
+                if(i + 2 == temp){
+                    endBlock = currentBlock;
+                    currentBlock = 0;
+                }else
+                    currentBlock = this->getFreeBlock();
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
+        
 
-
-
-
-
-
-
-
-
-
+/*
 	int FileSystem::getNextFree(){
 		int i=0;
 		while(freeSpace[i] != true){
@@ -139,3 +167,10 @@ using namespace std;
 		return result;
 	}
 	
+	//Decrement size
+	//Change corresponding freeSpace indeces to true
+	bool FileSystem::freeBlocks(int startBlock, int endBlock){
+
+
+	}
+*/
