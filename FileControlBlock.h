@@ -22,6 +22,7 @@ class FileControlBlock{
 		
 		int getStart();
 		int getEnd();
+		int getSize();
 		void setStart(int s);
 		void setEnd(int e);
 		void increaseSize(int sz);
