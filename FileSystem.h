@@ -12,9 +12,6 @@ class FileSystem{
 		DiskProcessType* proc;
                 int numBlocksUsed;
 		std::vector<int>freeBlocks;
-                
-
-
 
 		//Description: Function to get the next free block from the disk process. 
 		//Return: A pointer to the next free block. 
@@ -61,10 +58,6 @@ class FileSystem{
 		//Returns a string of the data in file
 		std::string readBlocks(int startBlock, int endBlock);
 		
-		//Change corresponding freeSpace indeces to true
-		bool freeBlocks(int startBlock, int endBlock);
-
-
 };
 
 #endif
