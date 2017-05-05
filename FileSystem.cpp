@@ -130,21 +130,27 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
 	// Calls DiskProcessType::read(int bnum, DiskBlockType *buffer);
 	// Returns a string of the data in file
 	string FileSystem::readBlocks(int startBlock, int endBlock){
-		string result;
-		int curBlock = startBlock;
-		int j=0;
-		while(curBlock!=0){
-			DiskBlockType *buffer;
-			DiskProcessType::read(curBlock, *buffer);
-			for(int i=3; i<buffer->data.length(); i++){
-				result[j] = buffer->data[i];
-				j++;
-			}
-			int curBlock = ((((int)buffer->data[0])*100) + (((int)buffer->data[1])*10) + (int)buffer->data[2]) - 1;
-		}
-		
-		return result;
-	}
+    string result = "";
+    DiskBlockType* buffer = new DiskBlockType(bsize);
+    int currentBlock = startBlock;
+    do{
+        string next = "";
+        if(proc->read(currentBlock, buffer) != -1){
+            for(int i = 0; i < std::strlen(buffer->data); i++){
+                if(i < 3){
+                    next += buffer->data[i];
+                } else {
+                    result += buffer->data[i];
+                }
+            }
+        } else {
+            std::cout<<"ERROR: Failed to open file at: " << currentBlock << std::endl;
+        }
+        currentBlock = std::atoi(next.c_str());
+    }while(currentBlock != 0);
+    
+    return result;
+}
 
 	// Description: Called by Directory when a file is to be deleted
 	// Parameters: startBlock: An int representing pointer to the first block.
