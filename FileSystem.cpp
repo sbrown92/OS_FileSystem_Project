@@ -9,20 +9,15 @@ using namespace std;
 	
 	FileSystem::FileSystem(){
 		proc = new DiskProcessType(10, 100);	//Disk Process
-		numBlocksUsed = 0;						//Number of blocks currently in use. 
-
-
+		numBlocksUsed = 0;			//Number of blocks currently in use. 
 
 		for(int i = 0; i < proc->getNumBlocks(); i++){
                     freeBlocks.push_back(i);
 		}
-
-
-
-
 	}
-    //Description: Called by the directory when a new file is added to 
-	// 			   they system. 
+
+	//Description: Called by the directory when a new file is added to 
+	//the system. 
 	//Return: The pointer to the new file's first block. 
     int FileSystem::createFile(){
         int newBlock = freeBlocks.back();
@@ -33,7 +28,7 @@ using namespace std;
         
     }	
 
-    //Description: Check whether or not the system has free blocks.
+    	//Description: Check whether or not the system has free blocks.
 	//Return: True if there are free blocks, False if not. 
 	bool FileSystem::hasFreeSpace(){
 		if(numBlocksUsed == proc->getNumBlocks())
@@ -41,16 +36,6 @@ using namespace std;
 		else
 			return true;
 	}
-        
-        
-
-
-
-
-
-
-
-
 
 
 	int FileSystem::getNextFree(){
@@ -66,15 +51,16 @@ using namespace std;
 	//Write str into diskBlockType buffer
 	//Call  int write(int bnum, DiskBlockType *buffer);
 	//Increment size, call getNumBlocks, getBlockSize, do some math with str.length
+	
+	//Find how many blocks will be needed
+	//Write string into buffer, reserving first three chars for 'next block pointer index'
+	//Write to disk on next available block
+	//Update this blocks
 	bool FileSystem::writeNewBlocks(string str){
 		int blocksNeeded = (str.length()/proc.getNumBlocks()) +1;
 		int blockSize = proc.getBlockSize();
 		int j=0;
 		int nextFreeBlock = 0;
-		//Fill buffer with str			
-		for (int i=0; i<str.length(); i++){ 
-			tbuffer->data[i]=str[i];
-		}
 		while(blocksNeeded>0){
 			DiskBlockType *buffer;
 			int i=3;
@@ -83,12 +69,12 @@ using namespace std;
 				i++;
 				j++;
 			}
-			if( DiskProcessType::write(getNextFree() , buffer) == 0 )
+			nextFreeBlock = getNextFree();
+			if( DiskProcessType::write(nextFreeBlock , buffer) == 0 )
 				//Inc size
 				//Update freeSpace vector
 				//Store next block in first 3 chars of data
 				FileControlBlock::increaseSize(1);
-				nextFreeBlock = getNextFree();
 				freeSpace[nextFreeBlock] = false;
 				buffer->data[2] = (char)nextFreeBlock;
 				nextFreeBlock = nextFreeBlock%10;
