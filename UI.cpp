@@ -163,7 +163,7 @@ void UI::dir_helper() {
         cout << "ATOS-FS Directory Listing" << endl;
         cout << "       " << "FILENAME" << "            " << "SIZE (blks)" << endl;
         for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
-           cout << "    " << *it << "                   " << d.getSize(*it) << endl;
+           cout << "    " << *it << "                   " << d.getFileSize(*it) << endl;
         }
 
         //free_space = getFreeSpace();

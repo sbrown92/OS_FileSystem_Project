@@ -3,7 +3,7 @@
 using namespace std;
 
   Directory::Directory(){
-    
+
   }
 
   bool Directory::createFile(string name){
@@ -86,5 +86,5 @@ using namespace std;
   }
 
   string Directory::getContents(string name){
-    return(readBlocks(getFCB(name).getStart(), (getFCB(name).getEnd())));
+    return(fs.readBlocks(getFCB(name).getStart(), (getFCB(name).getEnd())));
   }
