@@ -23,7 +23,7 @@ public:
   FileControlBlock getFCB(string);
 
 private:
-  vector<FileControlBlock*> dir = new vector<FileControlBlock*>();
+  vector<FileControlBlock*> dir = new vector<FileControlBlock>();
 };
 
 #endif
