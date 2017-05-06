@@ -14,7 +14,7 @@ using namespace std;
   bool nameExists(string name){
     bool exists = false;
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(*it.getFileName() == name){
+      if(*it->getFileName() == name){
         exists = true;
       }
     }
@@ -31,10 +31,10 @@ using namespace std;
 
   FileControlBlock getFCB(string name){
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(*it.getFileName() == name)
+      if(*it->getFileName() == name)
         return(*it);
     }
   }
   bool deleteFile(string name){
-    return(fs.deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+    return(fs.deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
