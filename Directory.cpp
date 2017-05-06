@@ -37,5 +37,5 @@ using namespace std;
     }
   }
   bool deleteFile(string name){
-    return(fs->deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
+    return(deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
