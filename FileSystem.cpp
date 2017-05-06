@@ -15,14 +15,14 @@ FileSystem::FileSystem(){
 
 
 	for(int i = 0; i < proc->getNumBlocks(); i++){
-                freeBlocks.push_back(i);
+                freeBlocks->push_back(i);
 	}
 
 }
 
 int FileSystem::getFreeBlock(){
-    int newBlock = freeBlocks.back();
-    freeBlocks.pop_back();
+    int newBlock = freeBlocks->back();
+    freeBlocks->pop_back();
     numBlocksUsed++;
 
     return newBlock;
@@ -104,7 +104,7 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
                     	std::cout<<"ERROR: Couldn't write blank file at block: " << std::endl;
                     	return false;
                     }
-                    freeBlocks.push_back(currentBlock);
+                    freeBlocks->push_back(currentBlock);
                     numBlocksUsed--;
                     currentBlock = std::atoi(next.c_str());
                 } else {
@@ -119,7 +119,7 @@ bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
 
 
 	int FileSystem::getNextFree(){
-		return freeBlocks.back();
+		return freeBlocks->back();
 	}
 
 	// Description: Called by Directory to read data in a file
