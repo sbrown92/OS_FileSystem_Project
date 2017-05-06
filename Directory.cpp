@@ -4,7 +4,7 @@ using namespace std;
 
   bool createFile(string name){
 
-    if(!fs.hasFreeSpace()){
+    if(!fs->hasFreeSpace()){
       return(false);
     }
     dir[counter] = new FileControlBlock(name);
@@ -37,5 +37,5 @@ using namespace std;
     }
   }
   bool deleteFile(string name){
-    return(fs.deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
+    return(fs->deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
