@@ -134,7 +134,7 @@ string FileSystem::readBlocks(int startBlock, int endBlock){
     do{
         string next = "";
         if(proc->read(currentBlock, buffer) != -1){
-            for(int i = 0; i < std::strlen(buffer->data); i++){
+            for(int i = 0; i < strlen(buffer->data); i++){
                 if(i < 3){
                     next += buffer->data[i];
                 } else {

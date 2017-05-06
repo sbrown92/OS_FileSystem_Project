@@ -5,6 +5,7 @@
 #define _FILESYSTEM
 #include <vector>
 #include <string>
+#include <cstring>
 #include "diskprocess.h"
 
 class FileSystem{
