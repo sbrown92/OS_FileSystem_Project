@@ -4,5 +4,6 @@ using namespace std;
 
 int main () {
 	UI ui();
+	cout << "Fuck this";
 	//ui.input();
 }
