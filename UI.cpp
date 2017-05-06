@@ -71,7 +71,6 @@ bool setContents (string filename, string newContents) {
  --------------------------------------- */
 
 UI::UI(){
-  input();
 }
 
 bool UI::nameExists (string filename) {
