@@ -43,7 +43,7 @@ using namespace std;
     return(fs.deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
 
-  vector<string> getFileNameList(){
+  vector<string> Directory::getFileNameList(){
     vector<string>* nameList;
     for(int i = 0; i < counter; i++){
       nameList->push_back(dirArray[i].getName());
@@ -51,7 +51,7 @@ using namespace std;
     return(nameList);
   }
 
-  int search(string name){
+  int Directory::search(string name){
     for(int i = 0; i < counter; i++){
       if(dirArray[i].getName() == name){
         return(i);
@@ -59,11 +59,11 @@ using namespace std;
     }
   }
 
-  bool setContents(string name, string contents){
+  bool Directory::setContents(string name, string contents){
     return(fs.saveFileToDisk(getFCB(name).getStart(), getFCB(name).getEnd(), contents));
   }
 
-  bool deleteDir(){
+  bool Directory::deleteDir(){
     bool success = false;
     int numDeleted = 0;
     for(int i =0; i < counter; i++){
