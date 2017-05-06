@@ -7,7 +7,8 @@ using namespace std;
     if(!hasFreeSpace()){
       return(false);
     }
-    dirArray[counter] = new FileControlBlock(name);
+    FileControlBlock f(name);
+    dirArray[counter] = f;
     counter++;
     return(true);
   }
