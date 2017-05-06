@@ -7,10 +7,11 @@
 using namespace std;
 
 static int counter = 0;
+static FileControlBlock dir[1000];
 
 class Directory {
 public:
-  
+
   bool createFile(string);
 
   bool nameExists(string);
@@ -24,7 +25,7 @@ public:
   FileControlBlock getFCB(string);
 
 private:
-  FileControlBlock dir[1000];
+
 };
 
 #endif
