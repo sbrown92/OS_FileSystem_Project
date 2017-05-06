@@ -13,7 +13,7 @@ public:
 
   bool nameExists(string);
 
-  string getFileName(int);
+  string getName(int);
 
   int getFileSize(int);
 
