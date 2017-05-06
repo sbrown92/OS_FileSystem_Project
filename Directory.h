@@ -6,6 +6,8 @@
 #include "FileSystem.h"
 using namespace std;
 
+static int counter = 0;
+
 class Directory {
 public:
   bool createFile(string);
@@ -22,7 +24,6 @@ public:
 
 private:
   vector<FileControlBlock*> dir;
-  static int counter = 0;
 };
 
 #endif

@@ -30,7 +30,7 @@ int FileSystem::getFreeBlock(){
 }
 
 
-static bool FileSystem::hasFreeSpace(int fileSize){
+bool FileSystem::hasFreeSpace(int fileSize){
     int numRequired = fileSize/proc->getBlockSize();
     if(fileSize % proc->getBlockSize() != 0)
         numRequired += 1;
@@ -84,7 +84,7 @@ bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data)
 // Parameters: startBlock: An int representing pointer to the first block.
 //	       endBlock: An int representing a pointer to the last block.
 //Returns true if successful, false otherwise
-static bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
+bool FileSystem::deleteFileFromDisk(int startBlock, int endBlock) {
     DiskBlockType *buffer = new DiskBlockType(bsize);
 
     int currentBlock = startBlock;
