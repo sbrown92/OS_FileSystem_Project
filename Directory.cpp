@@ -3,7 +3,7 @@
 using namespace std;
 
   bool createFile(string name){
-    fs = new FileSystem();
+
     if(!fs.hasFreeSpace()){
       return(false);
     }
