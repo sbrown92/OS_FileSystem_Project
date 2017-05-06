@@ -4,12 +4,13 @@ using namespace std;
 
   bool Directory::createFile(string name){
 
-    if(!fs.hasFreeSpace()){
-      return(false);
-    }
+
     FileControlBlock f(name);
     dirArray[counter] = f;
     counter++;
+    if(!fs.hasFreeSpace(dirArray[counter].getSize())){
+      return(false);
+    }
     return(true);
   }
 

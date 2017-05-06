@@ -27,7 +27,7 @@ class FileSystem{
 
 		//Description: Check whether or not the system has free blocks.
 		//Return: True if there are free blocks, False if not.
-		bool hasFreeSpace();
+		bool hasFreeSpace(int);
 
 
 		//Description: Called by the directory when a new file is added to
