@@ -8,6 +8,7 @@ using namespace std;
 
 static int counter = 0;
 
+FileControlBlock dirArray[1000];
 
 class Directory {
 public:
@@ -25,7 +26,7 @@ public:
   FileControlBlock getFCB(string);
 
 private:
-FileControlBlock dirArray[1000];
+
 };
 
 #endif
