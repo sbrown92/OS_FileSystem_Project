@@ -44,16 +44,16 @@ using namespace std;
   }
 
   vector<string> Directory::getFileNameList(){
-    vector<string>* nameList;
+    vector<string> nameList;
     for(int i = 0; i < counter; i++){
-      nameList->push_back(dirArray[i].getName());
+      nameList.push_back(dirArray[i].getFileName());
     }
     return(nameList);
   }
 
   int Directory::search(string name){
     for(int i = 0; i < counter; i++){
-      if(dirArray[i].getName() == name){
+      if(dirArray[i].getFileName() == name){
         return(i);
       }
     }
