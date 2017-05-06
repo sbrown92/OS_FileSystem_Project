@@ -6,7 +6,7 @@ using namespace std;
     dir = new vector<FileControlBlock*>();
   }
 
-  bool Direcotry::createFile(string name){
+  bool Directory::createFile(string name){
 
     if(!hasFreeSpace()){
       return(false);
@@ -30,7 +30,7 @@ using namespace std;
     return(dir[file].getFile());
   }
 
-  int Directry::getFileSize(int file){
+  int Directory::getFileSize(int file){
     return(dir[file].getSize());
   }
 
