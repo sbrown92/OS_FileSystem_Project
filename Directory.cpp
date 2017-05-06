@@ -28,8 +28,9 @@ using namespace std;
     return(dirArray[file].getFileName());
   }
 
-  int Directory::getFileSize(int file){
-    return(dirArray[file].getSize());
+  int Directory::getFileSize(string name){
+    int tmp = search(name);
+    return(dirArray[tmp].getSize());
   }
 
   FileControlBlock Directory::getFCB(string name){
@@ -40,4 +41,36 @@ using namespace std;
   }
   bool Directory::deleteFile(string name){
     return(fs.deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
+  }
+
+  vector<string> getFileNameList(){
+    vector<string>* nameList;
+    for(int i = 0; i < counter; i++){
+      nameList->push_back(dirArray[i].getName());
+    }
+    return(nameList);
+  }
+
+  int search(string name){
+    for(int i = 0; i < counter; i++){
+      if(dirArray[i].getName() == name){
+        return(i);
+      }
+    }
+  }
+
+  bool setContents(string name, string contents){
+    return(fs.saveFileToDisk(getFCB(name).getStart(), getFCB(name).getEnd(), contents));
+  }
+
+  bool deleteDir(){
+    bool success = false;
+    int numDeleted = 0;
+    for(int i =0; i < counter; i++){
+      deleteFile(dirArray[i]);
+      numDeleted++;
+    }
+    if(numDeleted == counter)
+      success = true;
+    return(success);
   }

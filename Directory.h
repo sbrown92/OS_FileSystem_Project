@@ -15,11 +15,19 @@ public:
 
   string getName(int);
 
-  int getFileSize(int);
+  int getFileSize(string);
 
   bool deleteFile(string);
 
   FileControlBlock getFCB(string);
+
+  vector<string> getFileNameList();
+
+  int search(string);
+
+  bool setContents(string, string);
+
+  bool deleteDir();
 
 private:
   int counter = 0;
