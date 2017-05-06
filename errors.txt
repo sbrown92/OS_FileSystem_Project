@@ -1,28 +1,14 @@
-In file included from FileControlBlock.h:10:0,
-                 from Directory.h:5,
-                 from Directory.cpp:2:
-diskprocess.h:60:3: error: ‘ofstream’ does not name a type
-   ofstream logfile;   // the file to log debug info to if logging
-   ^~~~~~~~
-diskprocess.h:61:3: error: ‘vector’ does not name a type
-   vector<DiskBlockType*> disk; // this is the data for the disk
-   ^~~~~~
-diskprocess.h:100:22: error: ‘string’ has not been declared
-   bool enableLogging(string logfileName);
-                      ^~~~~~
-diskprocess.h: In constructor ‘DiskProcessType::DiskProcessType(int, int)’:
-diskprocess.h:72:7: error: ‘disk’ was not declared in this scope
-       disk.push_back(NULL); // initialize block ptrs
-       ^~~~
-diskprocess.h: In destructor ‘DiskProcessType::~DiskProcessType()’:
-diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
-       if (disk[i]!=NULL) // block was used
-           ^~~~
-diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
-       logfile << "DISK: Terminating.\n";
-       ^~~~~~~
+In file included from UI.h:8:0,
+                 from UI.cpp:10:
+Directory.h:24:63: error: could not convert ‘(operator new(24ul), (<statement>, ((std::vector<FileControlBlock>*)<anonymous>)))’ from ‘std::vector<FileControlBlock>*’ to ‘std::vector<FileControlBlock>’
+   vector<FileControlBlock> dir = new vector<FileControlBlock>();
+                                                               ^
+In file included from UI.cpp:10:0:
+UI.h: In function ‘void edit(std::__cxx11::string)’:
+UI.h:149:42: error: ‘std::__cxx11::string {aka class std::__cxx11::basic_string<char>}’ has no member named ‘eof’
+     while (getline(cin, input) && !input.eof()){
+                                          ^~~
 In file included from Directory.cpp:2:0:
-Directory.h: At global scope:
 Directory.h:24:63: error: could not convert ‘(operator new(24ul), (<statement>, ((std::vector<FileControlBlock>*)<anonymous>)))’ from ‘std::vector<FileControlBlock>*’ to ‘std::vector<FileControlBlock>’
    vector<FileControlBlock> dir = new vector<FileControlBlock>();
                                                                ^
@@ -40,9 +26,9 @@ Directory.cpp: In function ‘bool nameExists(std::__cxx11::string)’:
 Directory.cpp:16:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:17:14: error: ‘i’ was not declared in this scope
-       if(dir[i] == name){
-              ^
+Directory.cpp:17:14: error: ‘std::vector<FileControlBlock>::iterator {aka class __gnu_cxx::__normal_iterator<FileControlBlock*, std::vector<FileControlBlock> >}’ has no member named ‘getFileName’
+       if(*it.getFileName() == name){
+              ^~~~~~~~~~~
 Directory.cpp: In function ‘std::__cxx11::string getFileName(int)’:
 Directory.cpp:25:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getFile());
@@ -52,85 +38,19 @@ Directory.cpp:29:12: error: ‘dir’ was not declared in this scope
      return(dir[file].getSize());
             ^~~
 Directory.cpp: In function ‘bool deleteFile(std::__cxx11::string)’:
-Directory.cpp:32:33: error: ‘getFCB’ was not declared in this scope
-     return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
-                                 ^
-Directory.cpp:32:83: error: ‘freeSpace’ was not declared in this scope
-     return(freeSpace(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
-                                                                                   ^
+Directory.cpp:32:42: error: ‘getFCB’ was not declared in this scope
+     return(deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+                                          ^
+Directory.cpp:32:92: error: ‘deleteFileFromDisk’ was not declared in this scope
+     return(deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+                                                                                            ^
 Directory.cpp: In function ‘FileControlBlock getFCB(std::__cxx11::string)’:
 Directory.cpp:35:50: error: ‘dir’ was not declared in this scope
      for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
                                                   ^~~
-Directory.cpp:36:15: error: ‘std::__cxx11::string FileControlBlock::fileName’ is private within this context
-       if(*it->fileName == name)
-               ^~~~~~~~
-In file included from Directory.h:5:0,
-                 from Directory.cpp:2:
-FileControlBlock.h:18:10: note: declared private here
-   string fileName;
-          ^~~~~~~~
-Directory.cpp:36:10: error: no match for ‘operator*’ (operand type is ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’)
-       if(*it->fileName == name)
-          ^~~~~~~~~~~~~
-In file included from FileControlBlock.h:10:0,
-                 from FileControlBlock.cpp:5:
-diskprocess.h:60:3: error: ‘ofstream’ does not name a type
-   ofstream logfile;   // the file to log debug info to if logging
-   ^~~~~~~~
-diskprocess.h:61:3: error: ‘vector’ does not name a type
-   vector<DiskBlockType*> disk; // this is the data for the disk
-   ^~~~~~
-diskprocess.h:100:22: error: ‘string’ has not been declared
-   bool enableLogging(string logfileName);
-                      ^~~~~~
-diskprocess.h: In constructor ‘DiskProcessType::DiskProcessType(int, int)’:
-diskprocess.h:72:7: error: ‘disk’ was not declared in this scope
-       disk.push_back(NULL); // initialize block ptrs
-       ^~~~
-diskprocess.h: In destructor ‘DiskProcessType::~DiskProcessType()’:
-diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
-       if (disk[i]!=NULL) // block was used
-           ^~~~
-diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
-       logfile << "DISK: Terminating.\n";
-       ^~~~~~~
-In file included from FileSystem.h:7:0,
-                 from FileSystem.cpp:4:
-diskprocess.h:60:3: error: ‘ofstream’ does not name a type
-   ofstream logfile;   // the file to log debug info to if logging
-   ^~~~~~~~
-diskprocess.h:61:3: error: ‘vector’ does not name a type
-   vector<DiskBlockType*> disk; // this is the data for the disk
-   ^~~~~~
-diskprocess.h:100:22: error: ‘string’ has not been declared
-   bool enableLogging(string logfileName);
-                      ^~~~~~
-diskprocess.h: In constructor ‘DiskProcessType::DiskProcessType(int, int)’:
-diskprocess.h:72:7: error: ‘disk’ was not declared in this scope
-       disk.push_back(NULL); // initialize block ptrs
-       ^~~~
-diskprocess.h:72:22: error: ‘NULL’ was not declared in this scope
-       disk.push_back(NULL); // initialize block ptrs
-                      ^~~~
-diskprocess.h: In destructor ‘DiskProcessType::~DiskProcessType()’:
-diskprocess.h:77:11: error: ‘disk’ was not declared in this scope
-       if (disk[i]!=NULL) // block was used
-           ^~~~
-diskprocess.h:77:20: error: ‘NULL’ was not declared in this scope
-       if (disk[i]!=NULL) // block was used
-                    ^~~~
-diskprocess.h:80:7: error: ‘logfile’ was not declared in this scope
-       logfile << "DISK: Terminating.\n";
-       ^~~~~~~
-In file included from FileSystem.cpp:4:0:
-FileSystem.h: At global scope:
-FileSystem.h:44:59: error: ‘std::string’ has not been declared
-   bool saveFileToDisk(int startBlock, int& endBlock, std::string data);   // <---  Sam
-                                                           ^~~~~~
-FileSystem.h:59:8: error: ‘string’ in namespace ‘std’ does not name a type
-   std::string readBlocks(int startBlock, int endBlock);
-        ^~~~~~
+Directory.cpp:36:14: error: ‘std::vector<FileControlBlock>::iterator {aka class __gnu_cxx::__normal_iterator<FileControlBlock*, std::vector<FileControlBlock> >}’ has no member named ‘getFileName’
+       if(*it.getFileName() == name)
+              ^~~~~~~~~~~
 FileSystem.cpp: In constructor ‘FileSystem::FileSystem()’:
 FileSystem.cpp:11:2: error: expected initializer before ‘proc’
   proc = new DiskProcessType(14, 100); //Disk Process
@@ -161,43 +81,10 @@ FileSystem.cpp:33:6: error: prototype for ‘bool FileSystem::hasFreeSpace(int)�
  bool FileSystem::hasFreeSpace(int fileSize){
       ^~~~~~~~~~
 In file included from FileSystem.cpp:4:0:
-FileSystem.h:29:8: error: candidate is: bool FileSystem::hasFreeSpace()
+FileSystem.h:30:8: error: candidate is: bool FileSystem::hasFreeSpace()
    bool hasFreeSpace();
         ^~~~~~~~~~~~
-FileSystem.cpp:46:69: error: ‘std::string’ has not been declared
- bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
-                                                                     ^~~~~~
-FileSystem.cpp: In member function ‘bool FileSystem::saveFileToDisk(int, int&, int)’:
-FileSystem.cpp:48:22: error: request for member ‘length’ in ‘data’, which is of non-class type ‘int’
-     int temp = (data.length() / (proc->getBlockSize() - 3));
-                      ^~~~~~
-FileSystem.cpp:49:13: error: request for member ‘length’ in ‘data’, which is of non-class type ‘int’
-     if(data.length() % (proc->getBlockSize() - 3) != 0)
-             ^~~~~~
-FileSystem.cpp:56:9: error: ‘string’ is not a member of ‘std’
-         std::string test = "";
-         ^~~
-FileSystem.cpp:58:12: error: ‘to_string’ is not a member of ‘std’
-         if(std::to_string(currentBlock).length() == 2)
-            ^~~
-FileSystem.cpp:59:13: error: ‘test’ was not declared in this scope
-             test += "0";
-             ^~~~
-FileSystem.cpp:60:17: error: ‘to_string’ is not a member of ‘std’
-         else if(std::to_string(currentBlock).length() == 1)
-                 ^~~
-FileSystem.cpp:61:13: error: ‘test’ was not declared in this scope
-             test += "00";
-             ^~~~
-FileSystem.cpp:63:9: error: ‘test’ was not declared in this scope
-         test += std::to_string(currentBlock);
-         ^~~~
-FileSystem.cpp:63:17: error: ‘to_string’ is not a member of ‘std’
-         test += std::to_string(currentBlock);
-                 ^~~
-FileSystem.cpp:64:22: error: request for member ‘substr’ in ‘data’, which is of non-class type ‘int’
-         test += data.substr((i * (proc->getBlockSize() - 3)), proc->getBlockSize() - 3);
-                      ^~~~~~
+FileSystem.cpp: In member function ‘bool FileSystem::saveFileToDisk(int, int&, std::__cxx11::string)’:
 FileSystem.cpp:66:42: error: ‘strcpy’ was not declared in this scope
          strcpy(buffer->data, test.c_str());
                                           ^
@@ -205,67 +92,16 @@ FileSystem.cpp: In member function ‘bool FileSystem::deleteFileFromDisk(int, i
 FileSystem.cpp:88:47: error: ‘bsize’ was not declared in this scope
      DiskBlockType *buffer = new DiskBlockType(bsize);
                                                ^~~~~
-FileSystem.cpp:93:17: error: ‘string’ was not declared in this scope
-                 string next = "";
-                 ^~~~~~
-FileSystem.cpp:95:21: error: ‘cout’ is not a member of ‘std’
-                     std::cout<<std::strlen(buffer->data)<<std::endl;
-                     ^~~
 FileSystem.cpp:95:32: error: ‘strlen’ is not a member of ‘std’
                      std::cout<<std::strlen(buffer->data)<<std::endl;
                                 ^~~
-FileSystem.cpp:95:59: error: ‘endl’ is not a member of ‘std’
-                     std::cout<<std::strlen(buffer->data)<<std::endl;
-                                                           ^~~
 FileSystem.cpp:96:40: error: ‘strlen’ is not a member of ‘std’
                      for(int i = 0; i < std::strlen(buffer->data); i++){
                                         ^~~
-FileSystem.cpp:98:51: error: overloaded function with no contextual type information
-                             next += buffer->data[i];
-                                                   ^
-FileSystem.cpp:104:22: error: ‘cout’ is not a member of ‘std’
-                      std::cout<<"ERROR: Couldn't write blank file at block: " << std::endl;
-                      ^~~
-FileSystem.cpp:104:82: error: ‘endl’ is not a member of ‘std’
-                      std::cout<<"ERROR: Couldn't write blank file at block: " << std::endl;
-                                                                                  ^~~
-FileSystem.cpp:109:36: error: ‘atoi’ is not a member of ‘std’
-                     currentBlock = std::atoi(next.c_str());
-                                    ^~~
-FileSystem.cpp:109:46: error: ‘std::next’ does not have class type
-                     currentBlock = std::atoi(next.c_str());
-                                              ^~~~
-FileSystem.cpp:111:18: error: ‘cout’ is not a member of ‘std’
-                  std::cout<<"ERROR: Counldn't open file at block: " + currentBlock << std::endl;
-                  ^~~
-FileSystem.cpp:111:87: error: ‘endl’ is not a member of ‘std’
-                  std::cout<<"ERROR: Counldn't open file at block: " + currentBlock << std::endl;
-                                                                                       ^~~
-FileSystem.cpp: At global scope:
-FileSystem.cpp:130:2: error: ‘string’ does not name a type
-  string FileSystem::readBlocks(int startBlock, int endBlock){
-  ^~~~~~
-In file included from FileControlBlock.h:10:0,
-                 from Directory.h:5,
-                 from UI.h:8,
-                 from UI.cpp:10:
-diskprocess.h:60:12: error: field ‘logfile’ has incomplete type ‘std::ofstream {aka std::basic_ofstream<char>}’
-   ofstream logfile;   // the file to log debug info to if logging
-            ^~~~~~~
-In file included from /usr/include/c++/6.3.1/ios:38:0,
-                 from /usr/include/c++/6.3.1/ostream:38,
-                 from /usr/include/c++/6.3.1/iostream:39,
-                 from UI.cpp:2:
-/usr/include/c++/6.3.1/iosfwd:119:11: note: declaration of ‘std::ofstream {aka class std::basic_ofstream<char>}’
-     class basic_ofstream;
-           ^~~~~~~~~~~~~~
-In file included from UI.h:8:0,
-                 from UI.cpp:10:
-Directory.h:24:63: error: could not convert ‘(operator new(24ul), (<statement>, ((std::vector<FileControlBlock>*)<anonymous>)))’ from ‘std::vector<FileControlBlock>*’ to ‘std::vector<FileControlBlock>’
-   vector<FileControlBlock> dir = new vector<FileControlBlock>();
-                                                               ^
-In file included from UI.cpp:10:0:
-UI.h: In function ‘void edit(std::__cxx11::string)’:
-UI.h:149:42: error: ‘std::__cxx11::string {aka class std::__cxx11::basic_string<char>}’ has no member named ‘eof’
-     while (getline(cin, input) && !input.eof()){
-         
+FileSystem.cpp: In member function ‘std::__cxx11::string FileSystem::readBlocks(int, int)’:
+FileSystem.cpp:132:47: error: ‘bsize’ was not declared in this scope
+     DiskBlockType* buffer = new DiskBlockType(bsize);
+                                               ^~~~~
+FileSystem.cpp:137:32: error: ‘strlen’ is not a member of ‘std’
+             for(int i = 0; i < std::strlen(buffer->data); i++){
+                                ^~~
