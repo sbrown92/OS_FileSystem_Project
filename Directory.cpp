@@ -2,6 +2,10 @@
 #include "Directory.h"
 using namespace std;
 
+  Directory(){
+    dir = new vector<FileControlBlock>();
+  }
+
   bool createFile(string name){
 
     if(!hasFreeSpace()){
