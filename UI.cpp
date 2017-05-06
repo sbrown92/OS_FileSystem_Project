@@ -10,11 +10,11 @@
  EXIT - ends program and deallocates all space. It is a volatile system; files do not
     persist after the run.
 
- It does error checking and validation to ensure that filenames are valid and 
- prints error messages to users if file operations return errors. 
+ It does error checking and validation to ensure that filenames are valid and
+ prints error messages to users if file operations return errors.
 
  For more information on each function, see UI.h.
- 
+
  Lead Author: Cat Gallagher cgallagher28@fordham.edu
  Contributing Authors: Frank Antolino, Timmy Moran, Sam Brown (Group 10)
  Most recent revision: Spring 2017
@@ -31,8 +31,8 @@ using namespace std;
 #include "UI.h"
 
 /* ------------------------------------
-DEBUG PURPOSES ONLY: 
---------------------------------------- 
+DEBUG PURPOSES ONLY:
+---------------------------------------
 vector <string> getFileNameList() {
     vector <string> myvector;
     myvector.push_back("cat");
@@ -66,13 +66,13 @@ string getContents (string filename) {
 bool setContents (string filename, string newContents) {
 	cout << "NEW CONTENTS:" << endl;
 	cout << newContents << endl;
-	return true;	
+	return true;
 }
  --------------------------------------- */
 
 
 bool UI::nameExists (string filename) {
-    vector <string> fileList = getFileNameList();
+    vector <string> fileList = d.getFileNameList();
     bool found = false;
     for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
            if (*it == filename) {
@@ -120,7 +120,7 @@ void UI::create_file_helper(string filename) {
     }
 
 
-    bool created = createFile(filename);
+    bool created = d.createFile(filename);
     if (created == false) {
         cerr << "ERROR: FILESYS -- Blocks could not be allocated: " << filename << endl;
         return;
@@ -144,7 +144,7 @@ void UI::delete_file_helper(string filename) {
         return;
     }
 
-    bool deleted = deleteFile(filename);
+    bool deleted = d.deleteFile(filename);
     if (deleted == false) {
         cerr << "ERROR: FILESYS -- Blocks could not be deallocated: " << filename << endl;
         return;
@@ -155,16 +155,16 @@ void UI::delete_file_helper(string filename) {
 }
 
 void UI::dir_helper() {
-        vector <string> fileList = getFileNameList();
+        vector <string> fileList = d.getFileNameList();
 
         cout << "ATOS-FS Directory Listing" << endl;
         cout << "       " << "FILENAME" << "            " << "SIZE (blks)" << endl;
         for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
            cout << "    " << *it << "                   " << getSize(*it) << endl;
         }
-        
-        // free_space = getFreeSpace();
-        // cout << "FREE SPACE " << free_space << " blks"
+
+        //free_space = getFreeSpace();
+        //cout << "FREE SPACE " << free_space << " blks"
 }
 
 void UI::edit_helper(string filename) {
@@ -183,11 +183,11 @@ void UI::edit_helper(string filename) {
     string input = "";
     string contents = "";
 
-    /* get each line of input and append to one string to pass to directory */ 
+    /* get each line of input and append to one string to pass to directory */
     while (getline(cin, input)){
         contents += input;
     }
-    setContents(filename, contents);
+    d.setContents(filename, contents);
     cin.clear();
     cin.ignore();
 
@@ -208,14 +208,14 @@ void UI::type_helper(string filename) {
         return;
     }
 
-    string contents = getContents(filename);
+    string contents = d.getContents(filename);
     cout << contents;
     return;
 }
 
 bool UI::exit_helper() {
         bool success;
-        success = deleteDir();
+        success = d.deleteDir();
         return success;
 }
 
@@ -223,7 +223,7 @@ bool UI::exit_helper() {
 void UI::input() {
     string command;
     string filename;
-    string input; 
+    string input;
 
     istringstream iss;
     cout << "$$ ";
@@ -232,10 +232,10 @@ void UI::input() {
     while (run) {
         getline(cin, input);
         iss.str(input);
-        iss >> skipws >> command >> filename;       
+        iss >> skipws >> command >> filename;
 
         if (command == "EXIT"){
-                run = false; 
+                run = false;
          }
         else {
                 if (command == "CREATE") {
@@ -263,4 +263,3 @@ void UI::input() {
         }
     }
 }
-

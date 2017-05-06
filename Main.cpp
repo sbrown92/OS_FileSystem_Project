@@ -3,6 +3,7 @@
 using namespace std;
 
 int main () {
-	UI ui;
+	Directory d;
+	UI ui(d);
 	ui.input();
 }
