@@ -60,7 +60,7 @@ using namespace std;
   }
 
   bool Directory::setContents(string name, string contents){
-    return(fs.saveFileToDisk(getFCB(name).getStart(), &getFCB(name).getEnd(), contents));
+    return(fs.saveFileToDisk(getFCB(name).getStart(), &(getFCB(name).getEnd()), contents));
   }
 
   bool Directory::deleteDir(){
