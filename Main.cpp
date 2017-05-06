@@ -3,6 +3,6 @@
 using namespace std;
 
 int main () {
-	UI ui();
+	UI ui;
 	ui.input();
 }
