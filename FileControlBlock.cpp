@@ -16,8 +16,8 @@ using namespace std;
 	//Directory would call this on create
 	FileControlBlock::FileControlBlock(string name){
 		fileName = name;
-		startBlock = -1;
-		endBlock = -1;
+		startBlock = 0;
+		endBlock = 0;
 		size = 0;
 	}
 
