@@ -60,14 +60,14 @@ using namespace std;
   }
 
   bool Directory::setContents(string name, string contents){
-    return(fs.saveFileToDisk(getFCB(name).getStart(), getFCB(name).getEnd(), contents));
+    return(fs.saveFileToDisk(getFCB(name).getStart(), &getFCB(name).getEnd(), contents));
   }
 
   bool Directory::deleteDir(){
     bool success = false;
     int numDeleted = 0;
     for(int i =0; i < counter; i++){
-      deleteFile(dirArray[i]);
+      deleteFile(dirArray[i].getFileName());
       numDeleted++;
     }
     if(numDeleted == counter)
