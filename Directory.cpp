@@ -2,11 +2,11 @@
 #include "Directory.h"
 using namespace std;
 
-  Directory(){
+  Directry::Directory(){
     dir = new vector<FileControlBlock*>();
   }
 
-  bool createFile(string name){
+  bool Directry::createFile(string name){
 
     if(!hasFreeSpace()){
       return(false);
@@ -16,7 +16,7 @@ using namespace std;
     return(true);
   }
 
-  bool nameExists(string name){
+  bool Directry::nameExists(string name){
     bool exists = false;
     for (int i = 0; i < counter; i++){
       if(dir[i] == name){
@@ -26,20 +26,20 @@ using namespace std;
     return(exists);
   }
 
-  string getFileName(int file){
+  string Directry::getFileName(int file){
     return(dir[file].getFile());
   }
 
-  int getFileSize(int file){
+  int Directry::getFileSize(int file){
     return(dir[file].getSize());
   }
 
-  FileControlBlock getFCB(string name){
+  FileControlBlock Directry::getFCB(string name){
     for(int i = 0; i < counter; i++){
       if(dir[i].getFileName() == name)
         return(dir[i]);
     }
   }
-  bool deleteFile(string name){
+  bool Directry::deleteFile(string name){
     return(deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
