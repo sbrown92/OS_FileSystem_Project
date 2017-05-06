@@ -27,7 +27,7 @@ class FileSystem{
 
 		//Description: Check whether or not the system has free blocks.
 		//Return: True if there are free blocks, False if not.
-		static bool hasFreeSpace();
+		bool hasFreeSpace();
 
 
 		//Description: Called by the directory when a new file is added to
@@ -49,7 +49,7 @@ class FileSystem{
 		// Parameters: startBlock: An int representing pointer to the first block.
 		//			   endBlock: An int representing a pointer to the last block.
 		// Return: True if file was successfully deleted, False if an error occured.
-		static bool deleteFileFromDisk(int startBlock, int endBlock);                          // <---  Sam
+		bool deleteFileFromDisk(int startBlock, int endBlock);                          // <---  Sam
 
 
 		//Description: Called by Directory to read data in a file

@@ -4,7 +4,7 @@ using namespace std;
 
   bool Directory::createFile(string name){
 
-    if(!hasFreeSpace()){
+    if(!fs.hasFreeSpace()){
       return(false);
     }
     FileControlBlock f(name);
@@ -38,5 +38,5 @@ using namespace std;
     }
   }
   bool Directory::deleteFile(string name){
-    return(deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
+    return(fs.deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }

@@ -24,6 +24,7 @@ public:
 private:
   int counter = 0;
   FileControlBlock dirArray[1000];
+  FileSystem fs;
 };
 
 #endif
