@@ -2,7 +2,7 @@
 #include "Directory.h"
 using namespace std;
 
-  bool createFile(string name){
+  bool Directory::createFile(string name){
 
     if(!hasFreeSpace()){
       return(false);
@@ -13,7 +13,7 @@ using namespace std;
     return(true);
   }
 
-  bool nameExists(string name){
+  bool Directory::nameExists(string name){
     bool exists = false;
     for (int i = 0; i < counter; i++){
       if(dirArray[i].getFileName() == name){
@@ -23,20 +23,20 @@ using namespace std;
     return(exists);
   }
 
-  string getFileName(int file){
-    return(dirArray[file].getFile());
+  string Directory::getName(int file){
+    return(dirArray[file].getFileName());
   }
 
-  int getFileSize(int file){
+  int Directory::getFileSize(int file){
     return(dirArray[file].getSize());
   }
 
-  FileControlBlock getFCB(string name){
+  FileControlBlock Directory::getFCB(string name){
     for(int i = 0; i < counter; i++){
       if(dirArray[i].getFileName() == name)
         return(dirArray[i]);
     }
   }
-  bool deleteFile(string name){
+  bool Directory::deleteFile(string name){
     return(deleteFileFromDisk(getFCB(name).getStart(), getFCB(name).getEnd()));
   }
