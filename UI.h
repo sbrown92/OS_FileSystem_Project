@@ -24,7 +24,7 @@ class UI {
     public:
 
     UI(); // default constructor
-    Directory d(); //creates directory on construction
+    Directory d; //creates directory on construction
     /*
     Description: Checks that a file with the given name exists in directory.
     Parameters: filename - name to be checked
