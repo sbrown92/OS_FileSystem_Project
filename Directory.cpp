@@ -7,7 +7,7 @@ using namespace std;
     if(!hasFreeSpace()){
       return(false);
     }
-    dir[counter] = new FileControlBlock(name);
+    dirArray[counter] = new FileControlBlock(name);
     counter++;
     return(true);
   }
@@ -15,7 +15,7 @@ using namespace std;
   bool nameExists(string name){
     bool exists = false;
     for (int i = 0; i < counter; i++){
-      if(dir[i].getFileName() == name){
+      if(dirArray[i].getFileName() == name){
         exists = true;
       }
     }
@@ -23,17 +23,17 @@ using namespace std;
   }
 
   string getFileName(int file){
-    return(dir[file].getFile());
+    return(dirArray[file].getFile());
   }
 
   int getFileSize(int file){
-    return(dir[file].getSize());
+    return(dirArray[file].getSize());
   }
 
   FileControlBlock getFCB(string name){
     for(int i = 0; i < counter; i++){
-      if(dir[i].getFileName() == name)
-        return(dir[i]);
+      if(dirArray[i].getFileName() == name)
+        return(dirArray[i]);
     }
   }
   bool deleteFile(string name){
