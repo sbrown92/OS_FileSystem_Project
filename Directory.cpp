@@ -14,7 +14,7 @@ using namespace std;
   bool nameExists(string name){
     bool exists = false;
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(*it->getFileName() == name){
+      if(it.getFileName() == name){
         exists = true;
       }
     }
