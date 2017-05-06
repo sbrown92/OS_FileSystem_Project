@@ -2,6 +2,10 @@
 #include "Directory.h"
 using namespace std;
 
+  Directory::Directory(){
+    
+  }
+
   bool Directory::createFile(string name){
 
 
