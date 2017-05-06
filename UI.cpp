@@ -85,16 +85,16 @@ bool UI::nameExists (string filename) {
 }
 
 void UI::create_file_helper(string filename) {
-
+    std::cout<<"here -- helper" << std::endl;
     /* user must enter a name for it to be created */
     if (filename == "") {
-        cerr << "ERROR: Please enter a filename." << endl;
+        std::cout << "ERROR: Please enter a filename." << endl;
         return;
     }
 
     /* check for uniqueness */
     if (nameExists(filename)) {
-        cerr << "ERROR: DIRECTORY -- Duplicate file name: " << filename << endl;
+        std::cout << "ERROR: DIRECTORY -- Duplicate file name: " << filename << endl;
         return;
     }
 
@@ -104,27 +104,28 @@ void UI::create_file_helper(string filename) {
     for (int i = 0; i < filename.length(); i++) {
         char c = filename[i];
 
-        if (!(isalnum(c) || c == '-' || c == '_' || c == '.'))
-            cerr << "ERROR: DIRECTORY -- Invalid character in file name: " << filename << endl;
+        if (!(isalnum(c) || c == '-' || c == '_' || c == '.')){
+            std::cout << "ERROR: DIRECTORY -- Invalid character in file name: " << filename << endl;
             return;
+        }
         if (c == '.')
             num_periods++;
     }
 
     /* number of periods needs to be exactly one */
     if (num_periods == 0) {
-        cerr << "ERROR: DIRECTORY -- file names must end with an extension using '.': " << filename << endl;
+        std::cout << "ERROR: DIRECTORY -- file names must end with an extension using '.': " << filename << endl;
         return;
     }
     else if (num_periods > 1) {
-        cerr << "ERROR: DIRECTORY -- file must not contain more than one period ('.'): " << filename << endl;
+        std::cout << "ERROR: DIRECTORY -- file must not contain more than one period ('.'): " << filename << endl;
         return;
     }
 
-
+    std::cout<<"here -- pre-create" << std::endl;
     bool created = d.createFile(filename);
     if (created == false) {
-        cerr << "ERROR: FILESYS -- Blocks could not be allocated: " << filename << endl;
+        std::cout << "ERROR: FILESYS -- Blocks could not be allocated: " << filename << endl;
         return;
     }
 
@@ -189,9 +190,10 @@ void UI::edit_helper(string filename) {
     while (getline(cin, input)){
         contents += input;
     }
+    cout << "pre - setContents" << endl;
     d.setContents(filename, contents);
+    cout << "post - setContents" << endl;
     cin.clear();
-    cin.ignore();
 
     return;
 
