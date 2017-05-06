@@ -44,7 +44,7 @@ class FileSystem{
                 //			is stored along with the return value.
                 //             data: The data to be appended to the end of the file.
 		// Return: The first block of the file.
-		bool saveFileToDisk(int startBlock, int& endBlock, std::string data); 		// <---  Sam
+		bool saveFileToDisk(int startBlock, int endBlock, std::string data); 		// <---  Sam
 
 
 		// Description: Called by the Directory when a file is being deleted.

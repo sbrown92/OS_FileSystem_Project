@@ -42,7 +42,8 @@ bool FileSystem::hasFreeSpace(int fileSize){
 
 
 // TODO: Add in checks to see if file does not save correctly.
-bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data){
+int FileSystem::saveFileToDisk(int startBlock, int endBlock, std::string data){
+		bool success = true;
     DiskBlockType *buffer = new DiskBlockType(this->proc->getBlockSize());
     int temp = (data.length() / (proc->getBlockSize() - 3));
     if(data.length() % (proc->getBlockSize() - 3) != 0)
@@ -64,7 +65,7 @@ bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data)
 
         strcpy(buffer->data, test.c_str());
         if(proc->write(indexBlock, buffer) == -1)
-                return false;
+                success = false;
 
         indexBlock = currentBlock;
         if(i + 2 == temp){
@@ -74,8 +75,10 @@ bool FileSystem::saveFileToDisk(int startBlock, int& endBlock, std::string data)
             currentBlock = this->getFreeBlock();
     }
 
-
-    return true;
+		if(success == true)
+    	return(endBlock);
+		else
+			return(-999);
 
 }
 
