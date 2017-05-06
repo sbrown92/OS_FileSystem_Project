@@ -6,6 +6,10 @@
 
 using namespace std;
 
+	FileControlBlock::FileControlBlock(){
+		
+	}
+
 
 	//UI would call this on create
 	FileControlBlock::FileControlBlock(string name){
@@ -21,11 +25,11 @@ using namespace std;
 	int FileControlBlock::getStart(){
 		return startBlock;
 	}
-	
+
 	int FileControlBlock::getEnd(){
 		return endBlock;
 	}
-	
+
 	int FileControlBlock::getSize(){
 		return size;
 	}
@@ -38,10 +42,9 @@ using namespace std;
 	}
 
 	void FileControlBlock::increaseSize(int sz){
-		size+=sz;	
+		size+=sz;
 	}
-	
+
 	void FileControlBlock::decreaseSize(int sz){
 		size-=sz;
 	}
-
