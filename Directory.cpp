@@ -80,3 +80,7 @@ using namespace std;
       success = true;
     return(success);
   }
+
+  string getContents(string name){
+    return(readBlocks(getFCB(name).getStart(), (getFCB(name).getEnd())));
+  }
