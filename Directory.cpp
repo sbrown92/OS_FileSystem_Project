@@ -28,12 +28,13 @@ using namespace std;
   int getFileSize(int file){
     return(dir[file].getSize());
   }
-  bool deleteFile(string name){
-    return(fs.deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
-  }
+
   FileControlBlock getFCB(string name){
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
       if(*it.getFileName() == name)
         return(*it);
     }
+  }
+  bool deleteFile(string name){
+    return(fs.deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
   }
