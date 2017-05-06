@@ -7,7 +7,6 @@
 using namespace std;
 
 FileSystem::FileSystem(){
-	int bsize;
 	proc = new DiskProcessType(14, 100);	//Disk Process
 	freeBlocks = new vector<int>();
 	numBlocksUsed = 0;                      //Number of blocks currently in use.

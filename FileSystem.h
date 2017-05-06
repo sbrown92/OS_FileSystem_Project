@@ -19,6 +19,7 @@ class FileSystem{
 		//Return: A pointer to the next free block.
 		int getNextFree();
 
+	  int bsize;
 
 	public:
 
