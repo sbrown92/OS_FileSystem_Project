@@ -29,6 +29,8 @@ public:
 
   bool deleteDir();
 
+  string getContents(string name);
+
 private:
   int counter = 0;
   FileControlBlock dirArray[1000];

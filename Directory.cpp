@@ -81,6 +81,6 @@ using namespace std;
     return(success);
   }
 
-  string getContents(string name){
+  string Directory::getContents(string name){
     return(readBlocks(getFCB(name).getStart(), (getFCB(name).getEnd())));
   }
