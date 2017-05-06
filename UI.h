@@ -1,183 +1,78 @@
-#ifndef _UI
-#define _UI
+/*
+ File: UI.h
+
+ This file details the functions used by the UI to execute the commands
+ given by the user.  
+
+ Lead Author: Cat Gallagher cgallagher28@fordham.edu
+ Contributing Authors: Frank Antolino, Timmy Moran, Sam Brown (Group 10)
+ Most recent revision: Spring 2017
+
+*/
+#ifndef UI_H
+#define UI_H
 
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include "Directory.h"
-
 
 using namespace std;
 
-/* ------------------------------------
-DEBUG PURPOSES ONLY:
---------------------------------------- */
-vector <string> getFileNameList() {
-    vector <string> myvector;
-    myvector.push_back("cat");
-    myvector.push_back("dog");
-    myvector.push_back("fish");
-    return myvector;
-}
+class UI {
+    public: 
 
-bool createFile(string filename) {
-    cout << "I CREATED A FILE: " << filename << endl;
-    return true;
-}
+    UI(); // default constructor
 
-bool deleteFile(string filename) {
-    cout << "I DELETED A FILE: " << filename << endl;
-    return true;
-}
+    /* 
+    Description: Checks that a file with the given name exists in directory.
+    Parameters: filename - name to be checked
+    Returns: true if file exists, false if not
+     */
+    bool nameExists (string filename); 
 
-int getSize(string filename) {
-    return 1;
-}
-/* --------------------------------------- */
+    /* 
+    Description: Creates a file with the given name in directory.
+    Parameters: filename - name of file to be made
+     */
+    void create_file_helper(string filename);
 
-bool nameExists (string filename) {
-    vector <string> fileList = getFileNameList();
-    bool found = false;
-    for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
-           if (*it == filename) {
-                found = true;
-           }
-    }
-    return found;
-}
+    /* 
+    Description: Deletes the file with the given name exists in directory.
+    Parameters: filename - name to be deleted
+     */
+    void delete_file_helper(string filename);
 
-void create_file(string filename) {
+    /* 
+    Description: Displays all file names, their sizes, and amount of remaining free space.
+     */
+    void dir_helper();
 
-    /* user must enter a name for it to be created */
-    if (filename == "") {
-        cerr << "ERROR: Please enter a filename." << endl;
-        return;
-    }
+    /* 
+    Description: Edits the given file by allowing the user to enter text to append to the file.
+    Parameters: filename - file to be edited
+     */
+    void edit_helper(string filename);
 
-    /* check for uniqueness */
-    if (nameExists(filename)) {
-        cerr << "ERROR: DIRECTORY -- Duplicate file name: " << filename << endl;
-        return;
-    }
+    /* 
+    Description: Reads the given file and outputs its contents to the user.
+    Parameters: filename - file to be read
+     */
+    void type_helper(string filename);
 
-    /* check for invalid special characters */
-    bool valid = true;
-    int num_periods = 0;
-    for (int i = 0; i < filename.length(); i++) {
-        char c = filename[i];
+    /* 
+    Description: Deletes all files and deallocates their space.
+    Returns: true if successful, false if not 
+    */
+    bool exit_helper();
 
-        if (!(isalnum(c) || c == '-' || c == '_' || c == '.'))
-            cerr << "ERROR: DIRECTORY -- Invalid character in file name: " << filename << endl;
-            return;
-        if (c == '.')
-            num_periods++;
-    }
+    /* 
+    Description: Sets up commandline prompt to allow users to input commands.
+     */
+    void input();
 
-    /* number of periods needs to be exactly one */
-    if (num_periods == 0) {
-        cerr << "ERROR: DIRECTORY -- file names must end with an extension using '.': " << filename << endl;
-        return;
-    }
-    else if (num_periods > 1) {
-        cerr << "ERROR: DIRECTORY -- file must not contain more than one period ('.'): " << filename << endl;
-        return;
-    }
-
-
-
-    bool created = createFile(filename);
-    if (created == false) {
-        cerr << "ERROR: FILESYS -- Blocks could not be allocated: " << filename << endl;
-        return;
-    }
-
-
-    return;
-}
-
-void delete_file(string filename) {
-
-    /* user must enter a name for it to be deleted */
-    if (filename == "") {
-        cerr << "ERROR: Please enter a filename." << endl;
-        return;
-    }
-
-    /* check for uniqueness */
-    if (!nameExists(filename)) {
-        cerr << "ERROR: DIRECTORY -- File not found: " << filename << endl;
-        return;
-    }
-
-    bool deleted = deleteFile(filename);
-    if (deleted == false) {
-        cerr << "ERROR: FILESYS -- Blocks could not be deallocated: " << filename << endl;
-        return;
-    }
-
-    return;
-
-}
-
-void dir() {
-        vector <string> fileList = getFileNameList();
-
-        cout << "ATOS-FS Directory Listing" << endl;
-        cout << "	" << "FILENAME" << "			" << "SIZE (blks)" << endl;
-        for (vector<string>::iterator it = fileList.begin() ; it != fileList.end(); ++it){
-           cout << "	" << *it << "			" << getSize(*it) << endl;
-        }
-        // free_space = getFreeSpace();
-        // cout << "FREE SPACE " << free_space << " blks"
-}
-
-void edit(string filename) {
-    /* user must enter a name for it to be edited */
-    if (filename == "") {
-        cerr << "ERROR: Please enter a filename." << endl;
-        return;
-    }
-
-    /* check for existence */
-    if (!nameExists(filename)) {
-        cerr << "ERROR: DIRECTORY -- File not found: " << filename << endl;
-        return;
-    }
-
-    string input = "";
-    while (getline(cin, input) && !input.eof()){
-
-    }
-    cin.clear();
-
-    return;
-
-}
-
-void type(string filename) {
-    /* user must enter a name for it to be read */
-    if (filename == "") {
-        cerr << "ERROR: Please enter a filename." << endl;
-        return;
-    }
-
-    /* check for existence */
-    if (!nameExists(filename)) {
-        cerr << "ERROR: DIRECTORY -- File not found: " << filename << endl;
-        return;
-    }
-
-    //string contents = getContents(filename);
-    // cout << contents;
-    return;
-}
-
-// bool exit() {
-//     bool success;
-//     success = deleteList();
-//     return success;
-// }
-//
+};
 
 #endif
+
+
