@@ -15,7 +15,7 @@ using namespace std;
   bool nameExists(string name){
     bool exists = false;
     for (int i = 0; i < counter; i++){
-      if(dir[i] == name){
+      if(dir[i].getFileName() == name){
         exists = true;
       }
     }
