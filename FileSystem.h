@@ -12,7 +12,7 @@ class FileSystem{
 	private:
 		DiskProcessType* proc;
                 int numBlocksUsed;
-		std::vector<int*>freeBlocks;
+		std::vector<int>*freeBlocks;
 
 		//Description: Function to get the next free block from the disk process.
 		//Return: A pointer to the next free block.
