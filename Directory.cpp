@@ -3,7 +3,7 @@
 using namespace std;
 
   bool createFile(string name){
-    if(!hasFreeSpace()){
+    if(!fs.hasFreeSpace()){
       return(false);
     }
     dir[counter] = new FileControlBlock(name);
@@ -29,7 +29,7 @@ using namespace std;
     return(dir[file].getSize());
   }
   bool deleteFile(string name){
-    return(deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
+    return(fs.deleteFileFromDisk(getFCB(name).getFirstPointer(), getFCB(name).getLastPointer()));
   }
   FileControlBlock getFCB(string name){
     for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
