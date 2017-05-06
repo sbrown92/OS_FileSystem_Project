@@ -4,7 +4,7 @@ using namespace std;
 
   bool createFile(string name){
 
-    if(!fs->hasFreeSpace()){
+    if(hasFreeSpace()){
       return(false);
     }
     dir[counter] = new FileControlBlock(name);

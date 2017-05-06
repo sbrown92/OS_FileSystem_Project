@@ -30,7 +30,7 @@ int FileSystem::getFreeBlock(){
 }
 
 
-bool FileSystem::hasFreeSpace(int fileSize){
+static bool FileSystem::hasFreeSpace(int fileSize){
     int numRequired = fileSize/proc->getBlockSize();
     if(fileSize % proc->getBlockSize() != 0)
         numRequired += 1;
