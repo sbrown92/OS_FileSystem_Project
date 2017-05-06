@@ -10,9 +10,7 @@ static int counter = 0;
 
 class Directory {
 public:
-
-  Directory();
-
+  
   bool createFile(string);
 
   bool nameExists(string);
@@ -26,7 +24,7 @@ public:
   FileControlBlock getFCB(string);
 
 private:
-  std::vector<FileControlBlock> dir;
+  FileControlBlock dir[1000];
 };
 
 #endif
