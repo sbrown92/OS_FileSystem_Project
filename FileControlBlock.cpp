@@ -1,4 +1,7 @@
-
+//Project Name: CISC3595_team10_atos-fs
+//File name: FileControlBlock.h
+//Lead Author: Frank Antolino
+//Contributing Authors: Sam Brown, Timmy Moran, Catherine Gallagher
 
 #include <iostream>
 #include <string>
@@ -7,17 +10,17 @@
 using namespace std;
 
 	FileControlBlock::FileControlBlock(){
-		
+
 	}
 
-
-	//UI would call this on create
+	//Directory would call this on create
 	FileControlBlock::FileControlBlock(string name){
 		fileName = name;
 		startBlock = -1;
 		endBlock = -1;
 		size = 0;
 	}
+
 	string FileControlBlock::getFileName(){
 		return fileName;
 	}

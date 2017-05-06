@@ -1,4 +1,7 @@
-
+//Project Name: CISC3595_team10_atos-fs
+//File name: FileControlBlock.h
+//Lead Author: Frank Antolino
+//Contributing Authors: Sam Brown, Timmy Moran, Catherine Gallagher
 
 #ifndef _FILECONTROLBLOCK
 #define _FILECONTROLBLOCK
@@ -21,13 +24,15 @@ class FileControlBlock{
 		int size;
 
 	public:
-		//UI would call this on create
+		//Directory would call this on create
 		FileControlBlock();
 		FileControlBlock(string name);
+		//Getters
 		string getFileName();
 		int getStart();
 		int getEnd();
 		int getSize();
+		//Setters
 		void setStart(int s);
 		void setEnd(int e);
 		void increaseSize(int sz);

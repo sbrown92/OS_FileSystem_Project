@@ -1,14 +1,19 @@
+//Project Name: CISC3595_team10_atos-fs
+//File name: Directory.cpp
+//Lead Author: Timmy Moran
+//Contributing Authors: Frank Antolino, Sam Brown, Catherine Gallagher
+
+
 #include <iostream>
 #include "Directory.h"
 using namespace std;
 
+  //Default Constructor
   Directory::Directory(){
 
   }
-
+  //Method to create a file and put it in the directory array; Returns true if successful
   bool Directory::createFile(string name){
-
-
     FileControlBlock f(name);
     dirArray[counter] = f;
     counter++;
@@ -17,7 +22,6 @@ using namespace std;
     }
     return(true);
   }
-
   bool Directory::nameExists(string name){
     bool exists = false;
     for (int i = 0; i < counter; i++){

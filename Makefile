@@ -15,5 +15,5 @@ CPPFLAGS = -g
 # Libraries
 LIBFLAGS = -lm
 
-atos: $(SOURCES) $(DEFS)
-	g++ $(CPPFAGS) $(SOURCES) -o atos $(LIBFLAGS)
+CISC3595_team10_atos-fs: $(SOURCES) $(DEFS)
+	g++ $(CPPFAGS) $(SOURCES) -o CISC3595_team10_atos-fs $(LIBFLAGS)

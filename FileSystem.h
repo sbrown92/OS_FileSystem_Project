@@ -1,5 +1,7 @@
-
-
+//Project Name: CISC3595_team10_atos-fs
+//File name: FileControlBlock.h
+//Lead Author: Sam Brown
+//Contributing Authors: Frank Antolino, Timmy Moran, Catherine Gallagher
 
 #ifndef _FILESYSTEM
 #define _FILESYSTEM

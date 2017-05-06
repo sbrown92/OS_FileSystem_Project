@@ -1,3 +1,8 @@
+//Project Name: CISC3595_team10_atos-fs
+//File name: Directory.h
+//Lead Author: Timmy Moran
+//Contributing Authors: Frank Antolino, Sam Brown, Catherine Gallagher
+
 #ifndef _DIRECTORY
 #define _DIRECTORY
 

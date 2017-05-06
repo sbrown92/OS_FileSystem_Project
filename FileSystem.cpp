@@ -1,5 +1,7 @@
-
-
+//Project Name: CISC3595_team10_atos-fs
+//File name: FileSystem.cpp
+//Lead Author: Sam Brown
+//Contributing Authors: Frank Antolino, Timmy Moran, Catherine Gallagher
 
 #include "FileSystem.h"
 
