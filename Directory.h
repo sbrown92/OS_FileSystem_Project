@@ -10,6 +10,9 @@ static int counter = 0;
 
 class Directory {
 public:
+
+  Directory();
+
   bool createFile(string);
 
   bool nameExists(string);
