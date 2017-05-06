@@ -23,8 +23,7 @@ public:
 private:
   vector<FileControlBlock*> dir;
   int counter = 0;
-  FileSystem fs;
-  fs = new FileSystem();
+  FileSystem *fs = new FileSystem();
 };
 
 #endif
