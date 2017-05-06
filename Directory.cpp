@@ -3,7 +3,7 @@
 using namespace std;
 
   Directory(){
-    dir = new vector<FileControlBlock>();
+    dir = new vector<FileControlBlock*>();
   }
 
   bool createFile(string name){
