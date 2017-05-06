@@ -13,8 +13,8 @@ using namespace std;
 
   bool nameExists(string name){
     bool exists = false;
-    for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(it.getFileName() == name){
+    for (int i = 0; i < counter; i++){
+      if(dir[i] == name){
         exists = true;
       }
     }
@@ -30,9 +30,9 @@ using namespace std;
   }
 
   FileControlBlock getFCB(string name){
-    for (vector<FileControlBlock>::iterator it = dir.begin() ; it != dir.end(); ++it){
-      if(*it->getFileName() == name)
-        return(*it);
+    for(int i = 0; i < counter; i++){
+      if(dir[i].getFileName() == name)
+        return(dir[i]);
     }
   }
   bool deleteFile(string name){
